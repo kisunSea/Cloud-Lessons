@@ -1,0 +1,3 @@
+<!--pages/blogs/blogs.wxml-->
+<text>blog</text>
+<icon class="icon-search"></icon>

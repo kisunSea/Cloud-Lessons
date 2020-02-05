@@ -1,0 +1,347 @@
+<!--index.wxml-->
+
+<!-- 自定义导航栏
+<navigationBar title="{{title}}" hasSearchWidget="{{hasSearchWidget}}"></navigationBar> -->
+
+<!-- 
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+
+<!-- <view>
+  <view>
+    <icon ></icon>
+    <input></input>
+  </view>
+</view>
+
+<tabbar></tabbar> -->
+
+<!--自定义导航栏-->
+<!-- <navigationBar title="{{title}}" hasSearchWidget="{{hasSearchWidget}}"></navigationBar> -->
+
+<!-- 组件显示 -->
+<navigationBar curindex="{{currentTab}}" title="{{title}}" hasSearchWidget="{{hasSearchWidget}}"></navigationBar>
+
+
+<!--tabbar首页-->
+<view hidden="{{currentTab == 0? false: true}}">
+
+  <!--首页顶部轮播图开始-->
+  <view style="background-color: #fff;padding-bottom: 30rpx;box-shadow: 0px 2px 10rpx #f3f3f3;">
+  <view class="page-section page-section-spacing swiper" style="width: 335px;margin: 0 auto;border-radius: 5px;">
+      <swiper 
+      indicator-dots="{{swiper_styles.indicatorDots}}"
+        autoplay="{{swiper_styles.autoplay}}"
+         interval="{{swiper_styles.interval}}"
+          duration="{{swiper_styles.duration}}"
+          circular="{{swiper_styles.circular}}"
+          indicator-active-color="#fff">
+        <block wx:for="{{swiper_styles.backgroundUrls}}" wx:key="index">
+          <swiper-item>
+            <navigator url="{{item.loca_url}}" >
+              <image class="swiper-item swiper-image" src="{{item.dis_url}}"></image>
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!--首页顶部轮播图结束-->
+
+  <!--加载1动画-->
+  <view class="index-center-line"  animation="{{center_line_animation}}"></view>
+
+  <!--首页中部导航栏开始-->
+  <view class="index_navs">
+    <view class="page__hd">
+        <view class="page__title" style="align-items:center;">
+          <text style="font-size:1.1rem;">导航分类</text>
+          <view class="all-cls" style="">
+            <text>全部分类</text>
+            <text class="icon-all"></text>
+            <!-- <icon class="icon-all" size="1rem"></icon> -->
+          </view>
+        </view>
+        <!-- <view class="page__desc">九宫格</view> -->
+    </view>
+    <!-- <view id="nav_items" class="{{ nav_items_fixed_height > nav_items_topheight ? 'fixed_nav' : 'page__bd' }}" style="background-color:#fff;"> -->
+    <view id="nav_items" class="page__bd" style="background-color: #fff;width: 90%;margin: 10rpx auto;border-radius: 30rpx;box-shadow: 0px 0px 10px #f3f3f3;">
+        <view class="weui-grids">
+            <block wx:for="{{navs}}" wx:key="index">
+                <navigator url="" class="weui-grid" hover-class="none" style="position:relative;">
+                <view wx:if="{{ item.nav_name=='通知' }}" class="decro-dot">12</view>
+                    <view class="img-wrapper">
+                      <image class="weui-grid__icon" src="{{item.nav_img}}" />
+                    </view>
+                    <!-- 『』 -->
+                    <view class="weui-grid__label">{{item.nav_name}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+
+    <!--防止抖动 导航分类下划固定-->
+    <view class="{{ nav_items_fixed_height > nav_items_topheight ? 'fixed_nav' : 'hidden' }}" style="background-color:#fff;">
+    <!-- <view id="nav_items" class="page__bd" style="background-color:#fff;"> -->
+        <view class="weui-grids">
+            <block wx:for="{{navs}}" wx:key="index">
+                <navigator url="" class="weui-grid" hover-class="none" style="position:relative;">
+                <view wx:if="{{ item.nav_name=='通知' }}" class="decro-dot">12</view>
+                    <image class="weui-grid__icon" src="{{item.nav_img}}" />
+                    <view class="weui-grid__label">{{item.nav_name}}</view>
+                </navigator>
+            </block>
+        </view>
+        <!-- <view class="index-center-line"></view> -->
+    </view>
+
+  </view>
+  <!--首页中部导航栏结束-->
+
+  <!--中部班课类型开始-->
+  <view class="page__hd">
+        <view class="page__title">
+          <text style="font-size:1.1rem;">班课分类</text>
+        </view>
+        <!-- <view class="page__desc">九宫格</view> -->
+  </view>
+
+  <view class="teach_cls_list">
+    <view class="teach_cls_banner  {{teach_cls_open ? 'cls_head_decro' : ''}}"  bindtap="openCloseClsListTeachToggle">
+      <view class="teach_cls_title">
+        <icon class="icon-in {{  teach_cls_open ? 'icon-in-open blue-default-color' : ''}}" style="color:#666;"></icon>
+        <text class="{{ teach_cls_open ? 'blue-default-color' : ''}}" style="font-size:1rem;color:#666;">我教的课</text>
+        <view class="cls_num">(15)</view>
+      </view>
+
+      <view class="teach_oper_items">
+        <!-- <icon class="icon-add" style="color: #000;margin-right:15px;" catchtap="openAddActionDialog"></icon> -->
+        <!-- <icon class="icon-more" style="font-size:1.5rem;color:#666;"></icon> -->
+        <text class="icon-exchange" style="font-size:1.5rem; margin:0px 10rpx;color:#666;"></text>
+        <text class="icon-choose-more" style="font-size:1.5rem; margin-left:10rpx;color:#666;"></text>
+      </view>
+    </view>
+    
+    <!-- 授课列表 -->
+    <view class="teach_cls_items">
+      <view class="kind-list__item-bd {{teach_cls_open ? 'kind-list__item-bd_show' : ''}}">
+          <view class="weui-cells {{teach_cls_open ? 'weui-cells_show' : ''}}" style="background-color:#fff;">
+          <!-- <scroll-view scroll-y="true" class="weui-cells {{teach_cls_open ? 'weui-cells_show' : ''}}"> -->
+              <block wx:for="{{teach_cls_list}}" wx:key="index">
+                  <!-- <navigator url="" class="weui-cell weui-cell_access">
+                      <view class="weui-cell__bd">{{item.name}}</view>
+                      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                  </navigator> -->
+
+                  <view class="">
+                      <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+                          <view class="class-item">
+
+                            <!--班课信息-->
+                            <view class="class-info">
+                              <text style="color:#666;font-size:1.2rem;">{{index}}</text>
+                              <view style="margin-left:20rpx;">
+                                <!--班课名-->
+                                <mp-cell value="{{item.name}}" footer=""></mp-cell>
+                                <!--班课标签及额外信息-->
+                                <view style="display:flex;flex-direction:row;align-items:center;">
+                                  <!--标签容器，例如辅修课、专业课-->
+                                  <view class="class-tag">专业课</view>
+                                  <!--人数-->
+                                  <text style="color:#666;font-size:0.8rem;margin-left:10rpx;">人数 - 33人</text>
+                                </view>
+                              </view>
+                            </view>
+
+                            <text class="icon-more" style="font-size:1rem; color:#666;"></text>
+                          </view>
+                      </mp-slideview>
+                  </view>
+                  <!--测试滑动结束-->
+              </block>
+          </view>
+          <!-- </scroll-view> -->
+      </view>
+    </view>
+
+  </view>
+
+  <view class="teach_cls_list">
+    <view class="teach_cls_banner {{listen_cls_open ? 'cls_head_decro' : ''}}"   bindtap="openCloseClsListListenToggle"  style="margin-top:0px;">
+      <view class="teach_cls_title">
+        <icon class="icon-in {{  listen_cls_open ? 'icon-in-open blue-default-color' : ''}}" style="color:#666;"></icon>
+        <text class="{{ listen_cls_open ? 'blue-default-color' : ''}}" style="font-size:1rem; color:#666;">我听的课</text>
+        <view class="cls_num">(1)</view>
+        <view class="cls_active">进行中</view>
+      </view>
+
+      <view class="">
+        <!-- <icon class="icon-add" style="color: #000;margin-right:15px;"></icon> -->
+        <!-- <icon class="icon-more" style="font-size:1.5rem;color:#666;" bindtap="open"></icon> -->
+        <text class="icon-exchange" style="font-size:1.5rem; margin:0px 10rpx;color:#666;"></text>
+        <text class="icon-choose-more" style="font-size:1.5rem; margin-left:10rpx;color:#666;"></text>
+      </view>
+    </view>
+
+
+    <view class="listen_cls_items">
+      <view class="kind-list__item-bd {{listen_cls_open ? 'kind-list__item-bd_show' : ''}}">
+          <view class="weui-cells {{listen_cls_open ? 'weui-cells_show' : ''}}">
+              <block wx:for="{{Listen_cls_list}}" wx:key="index">
+                  <view class="">
+                      <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+                          <view class="class-item">
+
+                            <!--班课信息-->
+                            <view class="class-info">
+                              <text style="color:#666;font-size:1.2rem;">{{index}}</text>
+                              <view style="margin-left:20rpx;">
+                                <!--班课名-->
+                                <mp-cell value="{{item.name}}" footer=""></mp-cell>
+                                <!--班课标签及额外信息-->
+                                <view style="display:flex;flex-direction:row;align-items:center;">
+                                  <!--标签容器，例如辅修课、专业课-->
+                                  <view class="class-tag">专业课</view>
+                                  <!--人数-->
+                                  <text style="color:#666;font-size:0.8rem;margin-left:10rpx;">人数 - 33人</text>
+                                </view>
+                              </view>
+                            </view>
+
+                            <text class="icon-more" style="font-size:1rem; color:#666;"></text>
+                          </view>
+                      </mp-slideview>
+                  </view>
+              </block>
+          </view>
+      </view>
+    </view>
+  </view>
+
+  <!--中部班课类型结束-->
+
+  <!--首页添加actionsheet开始-->
+
+  <view class="weui-demo-dialog {{add_sure ? 'weui-demo-dialog_show' : ''}}">
+      <view class="weui-mask" bindtap="closeAddActionDialog"></view>
+      <view class="weui-actionsheet {{add_sure ? 'weui-actionsheet_toggle' : ''}}" catchtap="stopEvent">
+          <view class="weui-actionsheet__title">
+              <view class="weui-actionsheet__title-text blue-default-color">创建或加入班课操作</view>
+          </view>
+          <view class="weui-actionsheet__menu">
+              <view class="weui-actionsheet__cell">创建班课</view>
+              <view class="weui-actionsheet__cell">加入班课</view>
+              <!-- <view class="weui-actionsheet__cell weui-actionsheet__cell_warn">清空班课</view> -->
+          </view>
+          <view class="weui-actionsheet__action">
+              <view class="weui-actionsheet__cell" bindtap="closeAddActionDialog">取消</view>
+          </view>
+      </view>
+    </view>
+  <!--首页添加actionsheet结束-->
+
+
+  <!--底部布局容错-->
+  <!-- <view style="margin-bottom:100px;"></view> -->
+
+  <!--底部footer-->
+  <view class="weui-footer">
+      <view class="weui-footer__links">
+          <navigator url="" class="weui-footer__link">移动教学助手</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2019-2020 www.kisunning.cn</view>
+  </view>
+
+  <!--底部布局容错-->
+  <view style="margin-bottom:100px;"></view>
+  <index/>
+</view>
+
+
+<!--tabbar搜索-->
+<view hidden="{{currentTab == 1? false: true}}">
+  <blog/>
+</view>
+
+<!--tabbar我的-->
+<view hidden="{{currentTab == 2? false: true}}">
+  <!-- <view style="height:20px;width:100%;"></view> -->
+  <view id="avatar-view">
+    <view id="avatar-info">
+      <view class="avatar-img">
+        <!--没有登录则使用默认头像, 否则使用用户头像-->
+        <image src="{{ haslogin==false ? '/static/imgs/default_avatar.png' : useinfo }}"></image>
+      </view>
+    </view>
+      
+    <view id="self-cont">
+    
+    </view>
+  </view>
+  <my/>
+  <view class="weui-footer">
+            <view class="weui-footer__links">
+                <navigator url="" class="weui-footer__link">移动教学助手</navigator>
+            </view>
+            <view class="weui-footer__text">Copyright © 2019-2020 www.kisunning.cn</view>
+        </view>
+</view>
+
+<!-- 自定义 tabbar -->
+<view class="nav-tabs">
+  <view class="tab-list {{currentTab == idx ? 'active' : 'default' }}" 
+        wx:for="{{items}}" 
+        wx:key="prototype" 
+        wx:for-index="idx" 
+        wx:for-item="item"
+  >
+    <!-- <text class="tab-text" wx:for-index="idx" data-current="{{idx}}" src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}">{{item.text}}</text> -->
+    
+    <!--中间图标凸起-->
+    <!-- <view style="display:flex;flex-direction:column;align-items:center;"> -->
+      <view class="middle-icon"  
+            wx:if="{{idx == 1}}" 
+            data-hassearchwidget="{{item.hasSearchWidget}}" 
+            data-title="{{item.title}}" 
+            data-current="{{idx}}" 
+            bindtap="swichNav"
+      >
+        <image style="" 
+              bindtap="swichNav"  
+              data-hassearchwidget="{{item.hasSearchWidget}}" 
+              data-title="{{item.title}}" 
+              data-current="{{idx}}"  
+              class="iconPath" 
+              wx:for-index="idx"  
+              src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}"
+        >
+        </image>
+      </view>
+      <!-- <text>blog</text> -->
+    <!-- </view> -->
+
+    <!--其余图标-->
+    <image wx:else
+           bindtap="swichNav" 
+           class="iconPath" 
+           wx:for-index="idx"  
+           data-hassearchwidget="{{item.hasSearchWidget}}"  
+           data-title="{{item.title}}" 
+           data-current="{{idx}}" 
+           src="{{currentTab == idx ? item.selectedIconPath : item.iconPath }}"
+    ></image>
+
+  </view>
+</view>
+
+

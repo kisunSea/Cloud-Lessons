@@ -1,0 +1,41 @@
+<!-- <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
+  <view style="{{'height: ' + statusBarHeight}}"></view>
+  <view class='title-container'>
+    </view>
+    <view class='title'><view wx:if="{{loading}}" class="navBar-loader"><view class="inner"></view></view>{{text}}</view>
+  </view>
+</view>
+<view style="{{'height: ' + navigationBarHeight}};background: white;"></view> -->
+
+<!--自定义导航栏格式-->
+
+<!--首页-->
+<block wx:if="{{curindex=='0'}}">
+  <view class="navBar"  style="{{'height: ' + navigationBarHeight}};">
+    <view style="{{'padding-top: ' + statusBarHeight}}"></view>
+    <view class='title'>{{title}}</view>
+  </view>
+  <view style="{{'height: ' + navigationBarHeight}};width:100%;"></view>
+</block>
+
+
+<!--发现页-->
+<block wx:elif="{{curindex=='1'}}">
+  <view class="navBar nav-shadow" style="{{'height: ' + navigationBarHeight}}; ">
+    <view style="{{'padding-top: ' + statusBarHeight}}"></view>
+    <view class='search-widget'>
+      <view class="search-wrapper">
+        <text class="icon-search"></text>
+        <!-- <icon class="iconfont">&#xe62f;</icon> -->
+        <navigator url="/pages/searchpage/searchpage" hover-class="search-blog-hover">
+          <input placeholder="搜索" placeholder-style="color:#ccc;" disabled="true"></input>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+<!--我的资料页-->
+
+<!-- <view style="{{'height: ' + navigationBarHeight}};width:100%;"></view> -->

@@ -1,0 +1,16 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/localcomponents/index/index",
+    "pages/logs/logs",
+    "pages/localcomponents/blogs/blogs",
+    "pages/localcomponents/my/my",
+    "pages/searchpage/searchpage"
+    
+  ],
+  "window": {
+    "navigationStyle": "default"
+  },
+  "sitemapLocation": "sitemap.json"
+}

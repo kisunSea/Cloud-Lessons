@@ -1,0 +1,69 @@
+.title{
+  /* background-color: #000000; */
+  /* color: #000000; */
+  font-size: 1.1rem;
+  text-align: left;
+  font-weight: bolder;
+  height: 44px;
+  line-height: 44px;
+  margin-left: 5px;
+  letter-spacing: 2px;
+  color: #0052d9;
+}
+
+.search-widget{
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-left: 1rem;
+  height: 44px;
+  /* line-height-step: 44px; */
+}
+
+.search-wrapper{
+  /* border: 1px solid #000; */
+  height: 32px;
+  margin: auto 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding-left: 0.2rem;
+  border-radius: 16px;
+  background-color: #f1f1f1;
+}
+
+.search-wrapper > input{
+  margin-left: 0.2rem;
+  flex: 1;
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 2rpx;
+  background-color: #f1f1f1;
+}
+
+.navBar{
+  width: 100vw;
+  position:fixed; top:0;
+  background-color:#fff;
+  z-index: 100;
+}
+
+.nav-shadow{
+  box-shadow: 0 -5px 20px #f2f2f2;
+}
+
+.search-blog-hover{
+  background-color: none;
+}
+
+/*字体文件图标*/
+.icon-search::before{
+  font-family:"iconfont" !important;
+  font-size:1rem;
+  content: "\e62f";
+  color: #666;
+  margin: auto 5px;
+}
+

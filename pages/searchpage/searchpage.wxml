@@ -1,0 +1,96 @@
+<!--pages/searchpage/searchpage.wxml-->
+
+<!--顶部搜索框-->
+<view class='search-widget'>
+    <view class="search-wrapper">
+      <text class="icon-search"></text>
+      <text style="color: #ccc">|</text>
+      <input placeholder="文章、心得、资源" placeholder-style="color:#ccc;" maxlength="30"></input>
+      <text class="icon-search-del" style="margin: auto 8px;color:#666"></text>
+    </view>
+    <view class="sear-btn">
+      搜索
+    </view>
+</view>
+
+<view style="background-color:#fff;height:44px;"></view>
+
+<!--推荐-->
+<view class="recom-widget">
+  <view class="recom-title" style="">
+    <view class="recom-detail" style="padding:10px;">
+      <view> 
+        <text class="icon-hot" style="color:#0052d9;"></text>
+        <text style="font-size:0.9rem;color:#0052d9;">热门搜索</text>
+      </view>
+      <text style="color: #aaa;font-size:0.9rem;"><text class="icon-next"></text></text>
+    </view>
+  </view>
+  <view class="recom-cates" style="">
+    <view class="code-cls">
+        
+      <view class="recom-item"> <view>linux</view> <text></text> </view>
+      <view class="recom-item"> <view>nginx</view> <text></text> </view>
+      <view class="recom-item"> <view>Java</view> <text></text> </view>
+      <view class="recom-item"> <view>Python</view> <text></text> </view>
+      <view class="recom-item"> <view>Golang/Go</view> <text></text> </view>
+      <view class="recom-item"> <view>操作系统</view> <text></text> </view>
+      <view class="recom-item"> <view>区块链</view> <text></text> </view>
+      <view class="recom-item"> <view>资源</view> <text></text> </view>
+      <view class="recom-item"> <view>中间件</view> <text></text> </view>
+      <view class="recom-item"> <view>MySQL</view> <text></text> </view>
+      <view class="recom-item"> <view>微服务</view> <text></text> </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!--历史记录-->
+<view class="local-sear">
+  <view class="recom-title" style="">
+    <view class="recom-detail" style="padding:10px;font-size:0.9rem;">
+      <view> 
+        <text class="icon-history" style="color:#0052d9;"></text>
+        <text style="font-size:0.9rem;color:#0052d9;">历史记录</text>
+      </view>
+      <view class="del-his" style="font-size:0.9rem;display:flex; flex-direction:row;">
+        <text class="icon-reback"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="history-container">
+    <view class="search-log-item">
+      <text class="log-detail" style="float:left;">javascript原型链测试测试测试测试测试测试测试测试</text>
+      <text class="icon-del" style="float:right;"></text>
+    </view>
+    <view style="width:92%; border-bottom:1px solid #f1f1f1;margin-left:12px;"></view>
+
+    <view class="search-log-item">
+      <text class="log-detail" style="float:left;">javascript原型链</text>
+      <text class="icon-del" style="float:right;"></text>
+    </view>
+    <view style="width:92%; border-bottom:1px solid #f1f1f1;margin-left:12px;"></view>
+
+    <view class="search-log-item">
+      <text class="log-detail" style="float:left;">javascript原型链</text>
+      <text class="icon-del" style="float:right;"></text>
+    </view>
+    <view style="width:92%; border-bottom:1px solid #f1f1f1;margin-left:12px;"></view>
+
+    <view class="search-log-item">
+      <text class="log-detail" style="float:left;">javascript原型链</text>
+      <text class="icon-del" style="float:right;"></text>
+    </view>
+    <view style="width:92%; border-bottom:1px solid #f1f1f1;margin-left:12px;"></view>
+
+    <view class="search-log-item">
+      <text class="log-detail" style="float:left;">javascript原型链</text>
+      <text class="icon-del" style="float:right;"></text>
+    </view>
+    <view style="width:92%; border-bottom:1px solid #f1f1f1;margin-left:12px;"></view>
+  </view>  
+
+
+</view>

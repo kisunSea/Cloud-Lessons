@@ -1,0 +1,13 @@
+{
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "mp-cells": "/components/cells/cells",
+    "mp-cell": "/components/cell/cell",
+    "mp-slideview": "/components/slideview/slideview",
+    "navigationBar": "/components/navigationBar/navigationBar",
+    "index": "/pages/localcomponents/index/index",
+    "blog": "/pages/localcomponents/blogs/blogs",
+    "my": "/pages/localcomponents/my/my"
+  },
+  "navigationStyle": "custom"
+}
