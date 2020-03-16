@@ -1,0 +1,19 @@
+<!--pages/FAQs/FAQs.wxml-->
+
+<view wx:for="{{problems}}" wx:key="{{index}}">
+  <view id='question-{{index}}' class='problem flex-row' data-index='{{index}}' data-content='{{item}}' bindtap='searQuesInfo'>
+    <view class='q-index' wx:if="{{index+1<10}}">0{{index+1}}</view>
+    <view class='q-index' wx:else>{{index}}</view>
+    <text class='q-content'>{{item}}</text>
+  </view>
+</view>
+
+<view class='submit-q'>
+  <navigator hover-class='submit-q-nav-hover' url='/pages/commitQuestion/commitQuestion'>
+  
+    <view class="flex-column" style="justify-content: center;height: 100rpx;">
+      <text>意见</text><text>反馈</text>
+    </view>      
+  
+  </navigator>  
+</view>

@@ -11,7 +11,7 @@
 
 <!--首页-->
 <block wx:if="{{curindex=='0'}}">
-  <view class="navBar"  style="{{'height: ' + navigationBarHeight}};">
+  <view class="navBar nav-shadow"  style="{{'height: ' + navigationBarHeight}};">
     <view style="{{'padding-top: ' + statusBarHeight}}"></view>
     <view class='title'>{{title}}</view>
   </view>
@@ -24,11 +24,12 @@
   <view class="navBar nav-shadow" style="{{'height: ' + navigationBarHeight}}; ">
     <view style="{{'padding-top: ' + statusBarHeight}}"></view>
     <view class='search-widget'>
+      <text class="icon-scanf" style="color:#0052d9;font-size:1.5rem;margin-right:20rpx;"></text>
       <view class="search-wrapper">
-        <text class="icon-search"></text>
+        <!-- <text class="icon-search"></text> -->
         <!-- <icon class="iconfont">&#xe62f;</icon> -->
-        <navigator url="/pages/searchpage/searchpage" hover-class="search-blog-hover">
-          <input placeholder="搜索" placeholder-style="color:#ccc;" disabled="true"></input>
+        <navigator url="/pages/searchpage/searchpage" hover-class="search-blog-hover" style="display: flex;flex-direction: row;align-items: center;">
+          <view style="width:300rpx;width: 300rpx;text-align: center;font-size: 1rem;letter-spacing: 5rpx;color: #888;">搜索</view>
         </navigator>
       </view>
     </view>

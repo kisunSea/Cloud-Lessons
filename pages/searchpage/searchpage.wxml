@@ -4,9 +4,10 @@
 <view class='search-widget'>
     <view class="search-wrapper">
       <text class="icon-search"></text>
-      <text style="color: #ccc">|</text>
-      <input placeholder="文章、心得、资源" placeholder-style="color:#ccc;" maxlength="30"></input>
-      <text class="icon-search-del" style="margin: auto 8px;color:#666"></text>
+      <text style="color: #ccc"></text>
+      <input placeholder="文章、心得、资源" auto-focus placeholder-style="color:#ccc;" maxlength="30"></input>
+      <text class="icon-scanf" style="color:#0052d9"></text>
+      <text class="icon-search-del" style="margin: auto 8px;color:#888;"></text>
     </view>
     <view class="sear-btn">
       搜索
@@ -29,17 +30,16 @@
   <view class="recom-cates" style="">
     <view class="code-cls">
         
-      <view class="recom-item"> <view>linux</view> <text></text> </view>
-      <view class="recom-item"> <view>nginx</view> <text></text> </view>
-      <view class="recom-item"> <view>Java</view> <text></text> </view>
-      <view class="recom-item"> <view>Python</view> <text></text> </view>
-      <view class="recom-item"> <view>Golang/Go</view> <text></text> </view>
-      <view class="recom-item"> <view>操作系统</view> <text></text> </view>
-      <view class="recom-item"> <view>区块链</view> <text></text> </view>
-      <view class="recom-item"> <view>资源</view> <text></text> </view>
-      <view class="recom-item"> <view>中间件</view> <text></text> </view>
+      <view class="recom-item"> <view>计算机</view> <text></text> </view>
+      <view class="recom-item"> <view>高数</view> <text></text> </view>
+      <view class="recom-item"> <view>计算机网络</view> <text></text> </view>
+      <view class="recom-item"> <view>c++</view> <text></text> </view>
+      <view class="recom-item"> <view>毛泽东思想</view> <text></text> </view>
+      <view class="recom-item"> <view>电子信息</view> <text></text> </view>
+      <view class="recom-item"> <view>文学综述</view> <text></text> </view>
       <view class="recom-item"> <view>MySQL</view> <text></text> </view>
       <view class="recom-item"> <view>微服务</view> <text></text> </view>
+      ...
     </view>
   </view>
 </view>

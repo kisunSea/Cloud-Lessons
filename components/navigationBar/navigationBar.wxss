@@ -29,9 +29,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  padding-left: 0.2rem;
+  padding-left: 10rpx;
   border-radius: 16px;
   background-color: #f1f1f1;
+  padding-right: 10rpx;
 }
 
 .search-wrapper > input{
@@ -51,7 +52,7 @@
 }
 
 .nav-shadow{
-  box-shadow: 0 -5px 20px #f2f2f2;
+  box-shadow: 0 -5px 20px #f3f3f3;
 }
 
 .search-blog-hover{
@@ -67,3 +68,8 @@
   margin: auto 5px;
 }
 
+.icon-scanf::before{
+  font-family:"iconfont" !important;
+  font-size:1rem;
+  content: '\e621';
+}

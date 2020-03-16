@@ -1,0 +1,10 @@
+page{
+  background-color: #fafafa!important;
+}
+
+.msg-item{
+  margin:30rpx 0;
+  /* box-shadow: 0px 0px 10px #f3f3f3; */
+  border:none;
+}
+

@@ -59,16 +59,15 @@
 /*iconfont字体文件引入开始*/
 @font-face {
   font-family: 'iconfont';  /* project id 1488649 */
-  src: url('//at.alicdn.com/t/font_1488649_j8l76r91rf.eot');
-  src: url('//at.alicdn.com/t/font_1488649_j8l76r91rf.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1488649_j8l76r91rf.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1488649_j8l76r91rf.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1488649_j8l76r91rf.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1488649_j8l76r91rf.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.eot');
+  src: url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1488649_uoqfk578ucm.svg#iconfont') format('svg');
 }
 
 .iconfont{
-    
     font-style:normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
@@ -76,6 +75,67 @@
 }
 /* iconfont字体文件引入结束*/
 
+.icon-source::before{
+  font-family:"iconfont" !important;
+  content: '\e8bc';
+}
+
+.icon-debat::before{
+  font-family:"iconfont" !important;
+  content: '\e8ba';
+}
+
+.icon-school::before{
+  font-family:"iconfont" !important;
+  content: '\e661';
+}
+
+.icon-pub-msg::before {
+  font-family:"iconfont" !important;
+  content: '\e681';
+}
+
+.icon-order::before {
+  font-family:"iconfont" !important;
+  content: '\e8ae';
+}
+
+.icon-home-index::before{
+  font-family:"iconfont" !important;
+  content: '\e8b9';
+}
+
+.icon-scanf::before{
+  font-family:"iconfont" !important;
+  font-size:1rem;
+  content: '\e621';
+}
+
+.icon-boy::before {
+  font-family:"iconfont" !important;
+  content: '\e6c2';
+}
+
+.icon-girl::before {
+  font-family:"iconfont" !important;
+  content: '\e638';
+}
+
+.icon-qr-code::before{
+  font-family:"iconfont" !important;
+  content: '\e605';
+}
+
+.icon-dispatch::before{
+  font-family:"iconfont" !important;
+  font-size:1rem;
+  content: '\e63a';
+}
+
+.icon-favor-blod::before{
+  font-family: "iconfont" !important;
+  content: "\e8c3";
+}
 
 /*字体文件图标*/
 .icon-search::before{
@@ -86,16 +146,21 @@
 
 .icon-in::before{
   font-family:"iconfont" !important;
-  font-size:1.5rem;
+  /* font-size:1.5rem; */
   content: "\e657";
   /* color: #000; */
 }
 
-.icon-add::before{
+.icon-add-blod::before{
   font-family:"iconfont" !important;
   font-size:1.5rem;
   content: "\e721";
-  color: #222;
+}
+
+.icon-add-light::before{
+  font-family:"iconfont" !important;
+  font-size:1.5rem;
+  content: "\e626";
 }
 
 .icon-all::before{
@@ -156,10 +221,114 @@
   content: "\e7ec";
 }
 
+.icon-signed::before{
+  font-family:"iconfont" !important;
+  content: "\e60f";
+}
+
+.icon-score::before{
+  font-family:"iconfont" !important;
+  content: "\e6eb";
+}
+
+.icon-lesson-active::before{
+  font-family:"iconfont" !important;
+  content: "\e765";
+}
+
+.icon-lesson-out::before{
+  font-family:"iconfont" !important;
+  content: "\e614";
+}
+
+.icon-msg::before{
+  font-family:"iconfont" !important;
+  content: "\e672";
+}
+
+.icon-fast-answer::before{
+  font-family:"iconfont" !important;
+  content: "\e760";
+}
+
+
+.icon-put-hand::before{
+  font-family:"iconfont" !important;
+  content: "\e622";
+}
+
+.icon-more-row::before{
+  font-family:"iconfont" !important;
+  content: "\e611";
+}
+
+.icon-thumbs-u::before{
+  font-family:"iconfont" !important;
+  content: "\e673";
+}
+
+.icon-contment::before{
+  font-family:"iconfont" !important;
+  content: "\e604";
+}
+
+.icon-take-send::before{
+  font-family:"iconfont" !important;
+  content: "\e6f3";
+}
+
+.icon-identity::before{
+  font-family:"iconfont" !important;
+  content: "\e623";
+}
+
+.icon-faceide::before{
+  font-family:"iconfont" !important;
+  content: "\edb6";
+}
+
+.icon-msg-sub::before{
+  font-family:"iconfont" !important;
+  content: "\e60c";
+}
+
+.icon-help::before{
+  font-family:"iconfont" !important;
+  content: "\e601";
+}
+
+.icon-remove-cache::before{
+  font-family:"iconfont" !important;
+  content: "\e7c0";
+}
+
+.icon-call::before{
+  font-family: "iconfont" !important;
+  content: "\e631"
+}
+
 .red-normal{
-  color:#e1251b;
+  color:#e1251b!important;
 }
 
 .blue-normal{
-  color: #0052d9;
+  color: #0052d9!important;
+}
+
+.black-normal{
+   color: #000!important;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.content-item .content-bottom{
+  justify-content: flex-end;
 }

@@ -1,13 +1,18 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/localcomponents/index/index",
     "pages/logs/logs",
     "pages/localcomponents/blogs/blogs",
     "pages/localcomponents/my/my",
-    "pages/searchpage/searchpage"
-    
+    "pages/searchpage/searchpage",
+    "pages/faqs/faqs",
+    "pages/faq/faq",
+    "pages/lessonindex/lessonindex",
+    "pages/msgs/msgs",
+    "pages/dayword/dayword",
+    "pages/signin/signin",
+    "pages/myoperpage/myoperpage"
   ],
   "window": {
     "navigationStyle": "default"

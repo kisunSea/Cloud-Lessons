@@ -1,0 +1,79 @@
+/* pages/dayword/dayword.wxss */
+page{
+  background: linear-gradient(-180deg, #002c6ead, #000c20fb);
+}
+
+.dd-navbar{
+  position: fixed;
+  z-index: 100;
+  /* border: 1px solid red; */
+  width: 100%;
+}
+
+.ret_home{
+  /* position: relative; */
+  transform: rotate(180deg);
+  color: #eee;
+  /* margin-right: 100rpx; */
+  
+}
+
+.title-view{
+  align-items: center;
+}
+
+.nav-title{
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+  margin-left: 100rpx;
+}
+
+.ddw-no{
+  margin-left: 20rpx;
+  color: #aaa;
+}
+
+.author-head-img > image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+}
+
+.ddw-detail{
+  padding: 50rpx;
+}
+
+.word-quota{
+  font-size: 5rem;
+  color: #aaa;
+  display: inline-block;
+  height: 4.5rem;
+
+}
+
+
+.quota-content{
+  color: #fff;
+  font-size: larger;
+}
+
+.quota-favor{
+  color: #aaa;
+  font-size: 1.5rem;
+  float: right;
+  display: block;
+}
+
+.contribute-quota{
+  position: fixed;
+  bottom: 0;
+  /* border: 1px solid red; */
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  background-color: rgba(51, 51, 51, 0.801);
+  color: #aaa;
+  letter-spacing: 5rpx;
+}

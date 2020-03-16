@@ -1,5 +1,4 @@
 /* pages/localcomponents/index/index.wxss */
 page{
-  background-color: #f7f7f7!important;
-  
+  background-color: #fafafa!important;
 }

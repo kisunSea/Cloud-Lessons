@@ -1,0 +1,39 @@
+<!--pages/dayword/dayword.wxml-->
+<!--自定义navbar开始-->
+<view class="dd-navbar"  style="{{'height: ' + navigationBarHeight + 'px'}};">
+  <view style="{{'padding-top: ' + statusBarHeight + 'px'}}"></view>
+  <view class='flex-row title-view' style="height:{{navigationBarHeight-statusBarHeight}}px;line-height:{{navigationBarHeight-statusBarHeight}}px;">
+    <text class="icon-in ret_home" style="font-size:1.5rem;margin-left:30rpx;" bindtap="_ret_home"></text>
+    <text class="nav-title">每日一句</text>
+    <text class="ddw-no">1/32</text>
+  </view>
+</view>
+<!--自定义navbar结束-->
+
+
+<!--容错-->
+<view style="{{'height: ' + navigationBarHeight}}px;width:100%;"></view>
+
+
+<view class="flex-column ddw-detail">
+
+  <view class="author-head-img">
+    <image src="https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132"></image>
+  </view>
+
+  <text class="word-quota">“</text>
+
+  <view class="quota-content">
+  虽然名字叫“winter tone”，音符所传达的情感一点也不冷，反而让我感觉是一丝凉意的温暖。凌晨蒙蒙亮，流行划过星辰熙攘的天机，一个人坐在一马平川的草原上，什么都不用去想，因为世界的美好就停留在我身旁。这就是音乐传达给我的画面感....陶醉其中
+  </view>
+
+  <view>
+    <text class="icon-thumbs-u quota-favor"></text>
+  </view>
+
+</view>
+
+
+<view class="contribute-quota">
+  我要投稿
+</view>

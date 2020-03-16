@@ -1,5 +1,5 @@
 /* pages/blogs/blogs.wxss */
 page{
-  background-color: #fff!important;
+  bbackground-color: #fafafa!important;
   
 }

@@ -1,0 +1,229 @@
+/* pages/lessonindex/lessonindex.wxss */
+
+.lesson-index-top-bg{
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.lesson-index{
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 400rpx;
+}
+
+.lesson-index .lesson-top-cover-view{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  /* border: 1px solid red; */
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.912);
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.page{
+  position: relative;
+}
+
+.lesson-navbar{
+  position: fixed;
+  z-index: 100;
+  background-color: #fff;
+  /* border: 1px solid red; */
+  width: 100%;
+}
+
+.lesson-nav-title{
+  align-items: center;
+}
+
+.lesson-nav-title>text:first-child{
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: bolder;
+  letter-spacing: 2px;
+}
+
+.lesson-index .t-lesson-info{
+  height: 200rpx;
+  width: 95%;
+  /* border: 1px solid red; */
+  margin-bottom: 20rpx;
+  justify-content: space-between;
+}
+
+.lesson-index .t-lesson-info image{
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 10rpx;
+}
+
+.lesson-index .t-lesson-info .t-lesson-detail{
+  /* border: 1px solid red; */
+  /* background-color: #0053d9d2; */
+  color: #f1f1f1;
+  width: 380rpx;
+  height: 160rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(90deg, #0053d9d0, #00d986d2);
+  /* color: #002e52cc */
+}
+
+.lesson-index .t-lesson-info .t-lesson-detail .detail-item > text:first-child{
+  /* border: 1px solid red; */
+  width: 155rpx;
+  display: inline-block;
+  color: #eee;
+}
+
+.lesson-index .t-lesson-info .t-lesson-detail .detail-item >text:nth-child(2){
+  margin-right: 10rpx;
+  color: #eee;
+}
+
+.lesson-opers .lesson-oper-item {
+  display: inline-block;
+  width: 150rpx;
+}
+
+.lesson-opers .lesson-oper-item .lesson-oper-inner{
+  align-items: center;
+  font-weight: 600;
+  color: #222;
+}
+
+.lesson-oper-item .oper_name{
+  font-size: smaller;
+}
+
+.lesson_track{
+  /* display: block; */
+  /* margin: 30rpx auto 10rpx auto; */
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+#lesson-plan-track{
+  align-items: center;
+}
+
+#lesson-plan-track .track-title{
+  margin: 30rpx 0;
+  position: relative;
+  color: #0053d9d2;
+  font-size: 1.1rem;
+  letter-spacing: 5rpx;
+  font-weight: 600;
+  width: 150px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  /* margin: aut */
+}
+
+#lesson-plan-track .track-title::before{
+  background-image: url(//misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/sprite/floor_hd/sprite.png);
+  background-position: 0 0;
+  width: 25px;
+  height: 20px;
+  left: 0;
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+}
+
+#lesson-plan-track .track-title::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  background-image: url(//misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/sprite/floor_hd/sprite.png);
+  background-position: -25px 0;
+  width: 25px;
+  height: 20px;
+  right: 0;
+}
+
+#lesson-plan-track .track-container{
+  width: 90%;
+}
+
+#lesson-plan-track .x-list-view{
+  padding: 0 20rpx;
+  justify-content: space-between;
+}
+
+#lesson-plan-track .x-list-view .track-item{
+  width: 110rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #888;
+}
+
+.tracker-active{
+  color: #0052d9!important;
+  font-weight: 600;
+  border-bottom: 2px solid #0053d9d2;
+}
+
+.tracker-item-link{
+  position: relative;
+  height: 100rpx;
+  border-left: 1rpx solid rgba(34, 34, 34, 0.322);
+  /* border-left: 1rpx solid #0053d9d2; */
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.track-detail-container{
+  align-items: flex-start;
+  padding-top: 40rpx;
+  width: 85%;
+}
+
+.track-pot-active{
+  background-color: #07c160;
+}
+
+.track-pot-deactive{
+  background-color: #888;
+}
+
+.track-pot-toactive{
+  background-color: #0052d9;
+}
+
+.track-pot-decro{
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  position: absolute;
+  top: 50%;
+  margin-left: -38rpx;
+  margin-top: -16rpx;
+}
+
+.tracker-item-time{
+  color: #888;
+  font-size: small;
+  /* font-weight: lighter; */
+}
+
+.track-deactive-detail{
+  color: #888!important;
+}
+
+.track-active-detail{
+  color: #07c161;
+}
+
+.track-toactive-detail{
+  color: #0053d9d5;
+}

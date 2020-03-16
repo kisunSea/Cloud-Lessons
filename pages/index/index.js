@@ -26,6 +26,8 @@ Page({
     nav_default_height: app.globalData.nav_default_height + app.globalData.sysinfo.statusHeight,
     nav_items_fixed_height: 0,
     center_line_width: 0,
+    my_teach_banner_fixed_height: 0,
+    my_teach_topheight: 0,
     items: [
       {
         "iconPath": "/static/imgs/index_unselected.png",
@@ -44,8 +46,8 @@ Page({
       {
         "iconPath": "/static/imgs/my_unselected.png",
         "selectedIconPath": "/static/imgs/my_selected.png",
-        "text": "",
-        "title": "",
+        "text": "我的",
+        "title": "我的",
         "hasSearchWidget": false
       }
     ],
@@ -62,7 +64,7 @@ Page({
           'loca_url': '/pages/swiper/banner2',
        },
         {
-          'dis_url': 'http://134.175.27.71/images/index_banner_3.png',
+          'dis_url': 'http://134.175.27.71/images/my_info_back.png',
           'loca_url': '/pages/swiper/banner3',
        },
       ],
@@ -77,59 +79,73 @@ Page({
     // 中部nav
     navs: [
       {
-        'nav_name': '课件',
-        'nav_img': '/static/imgs/nav_files.png'
+        'nav_name': '免费资源',
+        'nav_img': '/static/imgs/nav_files.png',
+        'url': '/pages/msgs/msgs',
       },
       {
-        'nav_name': '试卷',
-        'nav_img': '/static/imgs/nav_word2.png'
+        'nav_name': '每日一句',
+        'nav_img': '/static/imgs/nav_word2.png',
+        'url': '/pages/dayword/dayword',
       },
       {
-        'nav_name': '通知',
-        'nav_img': '/static/imgs/nav_msg.png'
+        'nav_name': '消息通知',
+        'nav_img': '/static/imgs/nav_msg.png',
+        'url': '/pages/msgs/msgs',
       },
       {
         'nav_name': '收藏',
-        'nav_img': '/static/imgs/nav_favor.png'
+        'nav_img': '/static/imgs/nav_favor.png',
+        'url': '/pages/msgs/msgs',
       }
     ],
 
     teach_cls_open: false, //是否点击了展开我的授课
-    listen_cls_open: false, //是否展开了我听的课
+    listen_cls_open: true, //是否展开了我听的课
 
     // 我教的课
     teach_cls_list: [
       {
+        'cls_type': '计算机',
         'cls_code': 'daw42ewqdewe798q42hjdaw', 
         'name': '计算机科学与技术',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 34,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
+        'cls_type': '计算机',
         'cls_code': 'daw42ewqdewe798q4hjdaw', 
         'name': '物联网工程',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 67,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
+        'cls_type': '计算机',
         'cls_code': 'daw42ewqdewe79q42hjdaw', 
         'name': '软件工程',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 45,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
+        'cls_type': '计算机',
         'cls_code': 'daw42ewqdwe798q42hjdaw',
         'name': '环境工程',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 14,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
+        'cls_type': '计算机',
         'cls_code': 'daw42ewdewe798q42hjdaw',
         'name': '数字媒体技术',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 32,  // 学生人数
         'is_finish': false,  // 是否结课
@@ -141,38 +157,167 @@ Page({
     Listen_cls_list: [
       {
         'cls_code': 'daw42ewqdewe798q42hjdaw',
-        'name': '计算机科学与技术',  // 班课名
+        'name': '计算机科学与技术2',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 34,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
         'cls_code': 'daw42ewqdewe798q4hjdaw',
-        'name': '物联网工程',  // 班课名
+        'name': '物联网工程2',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 67,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
         'cls_code': 'daw42ewqdewe79q42hjdaw',
-        'name': '软件工程',  // 班课名
+        'name': '软件工程2',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 45,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
         'cls_code': 'daw42ewqdwe798q42hjdaw',
-        'name': '环境工程',  // 班课名
+        'name': '环境工程2',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 14,  // 学生人数
         'is_finish': false,  // 是否结课
       },
       {
         'cls_code': 'daw42ewdewe798q42hjdaw',
-        'name': '数字媒体技术',  // 班课名
+        'name': '数字媒体技术2',  // 班课名
+        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
         'cls_img': '',  // 班课头像
         'stu_num': 32,  // 学生人数
         'is_finish': false,  // 是否结课
+      },
+    ],
+
+    // 说说卡片
+    content_items: [
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+        ],
+        'favor_num': 100,
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+        ],
+        'favor_num': 100,
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+        ],
+        'favor_num': 100,
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+        ],
+        'favor_num': 100,
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'favor_num': 100,
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+        ],
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+      {
+        'content_author': 'kisun',
+        'avatar_img': "https://wx.qlogo.cn/mmopen/vi_32/7nULdT9goEs9b1voicSIfpF8kJNMsmNGJTlicv59dtZ6BkjMQawnjY1Cn37eicbEIbvTOqcYYH5MnibYsvbdico4y1g/132",
+        'pub_time': '2019-10-21 18:03',
+        'content_detail': '校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用，校园移动教学助手真的好好用',
+        'content_imgs': [
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+          'http://134.175.27.71/images/lesson_type_teach.jpg',
+          'http://134.175.27.71/images/lesson_type_computer.jpg',
+        ],
+        'favor_num': 100,
+        'contments_num': 200,
+        'take_send_num': 300,
+      },
+
+    ],
+
+    my_oper_list:[
+      {
+        'oper_name': '身份认证',
+        'oper_brief': '更好地认识你',
+        'link_to_addr': '/page/myoperpage?type=0',
+      },
+      {
+        'oper_name': '消息订阅',
+        'oper_brief': '及时接收重要消息',
+        'link_to_addr': '/page/myoperpage?type=1',
+      },
+      {
+        'oper_name': '帮助中心',
+        'oper_brief': '',
+        'link_to_addr': '/page/myoperpage?type=2',
+      },
+      // {
+      //   'oper_name': '分享小程序',
+      //   'oper_brief': '',
+      //   'link_to_addr': '',
+      // },
+      {
+        'oper_name': '清除缓存',
+        'oper_brief': '',
+        'link_to_addr': '/page/myoperpage?type=3',
+      },
+      {
+        'oper_name': '联系我们',
+        'oper_brief': '',
+        'link_to_addr': '/page/myoperpage?type=4',
       },
     ],
 
@@ -180,7 +325,7 @@ Page({
     is_teach_open: false,
 
     // 是否展开我听的课
-    is_listen_open: false
+    is_listen_open: false,
 
   },
 
@@ -224,12 +369,13 @@ Page({
   onReady: function(e){
 
     // 加载首页 中部蓝色线条动画(长度缩短)
-    this.center_line_animation = wx.createAnimation({
-      duration: 1500,
-      timingFunction: 'ease',
-    });
-    this.center_line_animation.width('70vw').step();
-    this.setData({ center_line_animation: this.center_line_animation.export() });
+    // this.center_line_animation = wx.createAnimation({
+    //   duration: 1500,
+    //   timingFunction: 'ease',
+    // });
+    // this.center_line_animation.width('100vw').step();
+    // this.center_line_animation.opacity("0").step();
+    // this.setData({ center_line_animation: this.center_line_animation.export() });
 
   },
 
@@ -237,12 +383,13 @@ Page({
     // console.log(e.scrollTop);
     let that = this;
     let screen_height = wx.getSystemInfoSync().screenHeight;
+
     that.setData({
       nav_items_fixed_height: e.scrollTop + that.data.nav_default_height,
       center_line_width: e.scrollTop,
     });
-    console.log(screen_height);
-    console.log('高度' + that.data.nav_items_fixed_height+'\t'+that.data.nav_items_topheight);
+    // console.log(screen_height);
+    // console.log('高度' + that.data.nav_items_fixed_height+'\t'+that.data.nav_items_topheight);
   },
 
   onLoad: function () {
@@ -299,14 +446,23 @@ Page({
       ],
     });
 
+    let selectorQueryObj = wx.createSelectorQuery();
 
-    // 首页效果：滑动到某一个位置固定
-    wx.createSelectorQuery().selectAll('#nav_items').boundingClientRect(function (rect) {
-      console.log(rect)
+    // 首页效果：导航分类 滑动到某一个位置固定
+    selectorQueryObj.selectAll('.fix_item').boundingClientRect(function (rect) {
+      console.log(rect);
       that.setData({
-        nav_items_topheight: rect[0].top
+        nav_items_topheight: rect[0].top,
       })
     }).exec();
+
+    // 首页效果：班课分类>我教的课 滑动到顶部固定
+    // wx.createSelectorQuery().selectAll('#my_cls_title_1').boundingClientRect(function (rect) {
+    //   console.log(rect)
+    //   that.setData({
+    //     nav_items_topheight: rect[0].top
+    //   })
+    // }).exec();
 
   },
 
@@ -337,5 +493,32 @@ Page({
     })
   },
 
+  // 打开班课
+  lessonopen: function(res){
+    // console.log(res.currentTarget.dataset);
+    this.setData(res.currentTarget.dataset);
+  },
+
+  // 点击首页课程跳转至lessonindex页面
+  navigateToLessonIndex:function(res){
+    // type:
+    // 1 表示 我创建的课
+    // 0 表示 我加入的课
+    let cur_data = res.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/lessonindex/lessonindex?lesson_data=' + JSON.stringify(cur_data.lessondata) + '&type=' + cur_data.type,
+    })
+  },
+
+  // 扫描二维码  todo 扫码加入班课
+  scanf_qr_code: function(){
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: ['qrCode',],
+      success(res) {
+        console.log(res)
+      }
+    })
+  }
 
 })

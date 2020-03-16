@@ -1,0 +1,145 @@
+<!--pages/lessonindex/lessonindex.wxml-->
+
+<!-- // {
+//   "navigationBarBackgroundColor": "#ffffff",
+//   "navigationBarTextStyle": "black",
+//   "navigationBarTitleText": "我的课",
+//   "backgroundColor": "#fffff",
+//   "backgroundTextStyle": "light",
+//   "disableScroll": false
+// } -->
+
+<view class="page">
+
+  
+
+
+
+
+
+
+
+
+
+
+  <!--自定义navbar开始-->
+  <view class="lesson-navbar"  style="{{'height: ' + navigationBarHeight + 'px'}};">
+    <view style="{{'padding-top: ' + statusBarHeight + 'px'}}"></view>
+    <view class='flex-row lesson-nav-title' style="height:{{navigationBarHeight-statusBarHeight}}px;">
+      <text style="margin-left:20rpx;letter-spacing:">{{lesson_data.name}}</text>
+      <text class="icon-home-index" style="font-size:1.5rem;margin-left:40rpx;" bindtap="_ret_home"></text>
+    </view>
+  </view>
+  <!--自定义navbar结束-->
+
+  <!--容错-->
+  <view style="{{'height: ' + navigationBarHeight}};width:100%;"></view>
+
+
+  <view class="lesson-index">
+    <view class="lesson-index-top-bg" style="background:url({{lesson_data.head_img}});"></view>
+    <view class="flex-column lesson-top-cover-view">
+      <!--我教得课-->
+      <block wx:if="{{type==0}}">
+        <view class="flex-row t-lesson-info">
+          <image src="{{lesson_data.head_img}}"></image>
+          <view class="t-lesson-detail">
+            <view class="detail-item">
+              <text>授课教师</text>
+              <text>:</text>
+              <text>kisun</text>
+            </view>
+            <view class="detail-item">
+              <text>班级人数</text>
+              <text>:</text>
+              <text>55人</text>
+            </view>
+            <view class="detail-item">
+              <text>学年-学期</text>
+              <text>:</text>
+              <text>2019年-2学期</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!--我教得课结束-->
+
+      <!--我听的课-->
+      <block wx:elif="{{type==1}}">
+      </block>
+      <!--我听的课结束-->
+    </view>
+
+  </view>
+
+  <!--班课操作-->
+  <view class="lesson-opers">
+      <block wx:if="{{type == 0}}" wx:for="{{t_oper_list}}" wx:for-item="t_oper" wx:key="index">
+
+        <view class="lesson-oper-item">
+          <view class="flex-column lesson-oper-inner">
+            <text class="{{t_oper.icon_class}}" style="font-size:1.5rem"></text>
+            <text class="oper_name">{{t_oper.oper_name}}</text>
+          </view>
+        </view>
+
+      </block>
+  </view>
+  <!--班课操作结束-->
+  
+
+  <!--教学跟踪-->
+  <view id="lesson-plan-track" class="flex-column">
+
+    <text class="track-title">教学跟踪</text>
+
+    <!--教学活动跟踪容器开始-->
+    <view class="track-container">
+    
+      <!--
+      教师端有 [全部、 进行中、 待开始、 已结束]
+      学生端有全部 [进行中、 已结束]
+       -->
+      <view class="flex-row x-list-view">
+
+        <block wx:for="{{ type==0 ? t_track_list : s_track_list }}" wx:key="index">
+            <view class="track-item {{ display_track_idx == index ? 'tracker-active' : '' }}" data-index="{{index}}" bindtap="ch_track">{{item}}</view>
+        </block>
+
+      </view>
+
+    </view>
+    <!--教学活动跟踪容器结束-->
+
+
+    <!--全部类目-->
+    <view class="flex-column track-detail-container">
+      <block wx:for="{{display_track_list}}" wx:key="index" wx:for-item="track_item">
+      <view class="tracker-item-link">
+        <block wx:if="{{track_item.status == 0}}">  <!--已结束-->
+          <text class="tracker-item-time track-deactive-detail">{{track_item.start_time}} - {{track_item.end_time}}</text>
+          <view class="track-deactive-detail">{{track_item.detail}}</view>
+          <view class="track-pot-decro track-pot-deactive"></view>
+        </block>
+        <block wx:if="{{track_item.status == 1}}">  <!--进行中-->
+          <text class="tracker-item-time track-active-detail">{{track_item.start_time}} - {{track_item.end_time}}</text>
+          <view class="track-active-detail">{{track_item.detail}}</view>
+          <view class="track-pot-decro track-pot-active"></view>
+        </block>
+        <block wx:if="{{track_item.status == 2}}">   <!--待开始-->
+          <text class="tracker-item-time track-toactive-detail">{{track_item.start_time}} - {{track_item.end_time}}</text>
+          <view class="track-toactive-detail">{{track_item.detail}}</view>
+          <view class="track-pot-decro track-pot-toactive"></view>
+        </block>
+      </view>
+      </block>
+
+    </view>
+
+  
+  </view>
+  <!--教学跟踪结束-->
+
+
+</view>
+

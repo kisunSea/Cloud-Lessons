@@ -1,0 +1,57 @@
+/* pages/FAQs/FAQs.wxss */
+page{
+  background-color: #fdfdfd;
+}
+.problem{
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+  background-color: #ffffff;
+  padding: 20rpx 0;
+}
+
+.problem:active{
+  background-color: #eeeeee;
+}
+
+.q-index{
+  /* border: 1px solid red; */
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  background-color: #0052d9;
+  margin-left: 10rpx;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 10rpx;
+}
+
+.q-content{
+  margin-left: 10rpx;
+}
+
+.submit-q{
+  background-color: #0052d9;
+  position: fixed;
+  right: 20rpx;
+  bottom: 200rpx;
+  color: white;
+  font-size: 0.8rem;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  line-height: 50rpx;
+}
+
+.submit-q  text{
+  height: 30rpx;
+  line-height: 30rpx;
+}
+
+.submit-q .submit-q-nav-hover{
+  background-color: none;
+}
+
+
+

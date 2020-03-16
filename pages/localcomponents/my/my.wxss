@@ -1,31 +1,14 @@
 /* pages/my/my.wxss */
 page{
-  background-color: #fff!important;
+  background-color: #fafafa!important;
   
 }
 navigationBar{
   box-shadow: none;
 }
 
-#avatar-view{
-  background-color: #eaeffab6;
-  width: 100%;
-  margin: 0 auto;
-  height: 200px;
-  /* border: 1px solid #333; */
-  /* border-radius: 8px; */
-}
 
-.avatar-img > image{
-  width: 45px;
-  height: 45px;
-}
 
-#avatar-info{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
 
 .avatar-img{
   /* background-color: red; */

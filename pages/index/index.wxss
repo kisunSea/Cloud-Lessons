@@ -1,11 +1,15 @@
 /**index.wxss**/
 page{
-  background-color: #f7f7f7!important;
+  background-color: #fafafa!important;
 }
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.weui-footer{
+  margin-top: 40rpx;
 }
 
 .userinfo-avatar {
@@ -199,7 +203,7 @@ page {
 }
 
 .cls_active{
-  background-color: #0052d9;
+  background-color: #0053d9d2;
   padding: 0px 3px;
   font-size: 0.8rem;
   color: #fff;
@@ -213,7 +217,7 @@ page {
 
 .cls_num{
   font-size: 0.9rem;
-  color:#444;
+  color:#888;
 }
 
 .kind-list__item-bd{height:0;overflow:hidden}
@@ -234,30 +238,38 @@ page {
   /* background-color: #eaeffab6; */
   width: 100%;
   margin: 0 auto;
-  height: 200rpx;
+  height: 370rpx;
   /* border: 1px solid #333; */
   /* border-radius: 8px; */
-  background: url(http://134.175.27.71/images/my_info_back.png);
+  /* background: url(http://134.175.27.71/images/my_info_back.png); */
   background-position: center;
   background-size: cover;
+  position: relative;
+  background-color: #0052d9;
 }
 
 .avatar-img > image{
-  width: 90rpx;
-  height: 90rpx;
+  width: 130rpx;
+  height: 130rpx;
+  margin: 15rpx;
+  /* box-shadow: 0 0 5rpx #ffffff94; */
 }
 
 #avatar-info{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  height: 150rpx;
+  /* position: absolute;
+  top: 225rpx;
+  left: 80rpx; */
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 150rpx;
+  /* border: 1px solid red; */
+  position: absolute;
+  bottom: 40rpx;
+  /* left: 10%; */
 }
 
-.avatar-img{
-  /* background-color: red; */
-  height: 30%;
-  /* margin-top: 15px; */
-}
 
 .swiper-image{
   width: 100%;
@@ -290,7 +302,7 @@ page {
 
 .fixed_nav{
   position: fixed!important;
-  top: 64px;
+  /* top: 64px; */
   left: 0;
   z-index: 101;
   width: 100vw;
@@ -299,7 +311,7 @@ page {
 
 
 .index-center-line{
-  width: 100vw;
+  width: 20vw;
   height: 4rpx;
   border-radius: 2rpx;
   margin: 0 auto;
@@ -326,27 +338,289 @@ page {
   background-color: #fff;
 } */
 
-.class-info{
+.lesson-info{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
-.class-item{
+.lesson-item{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 680rpx;
+  margin-top: 20rpx;
+  box-shadow: 0px 0px 10px #f1f1f1;
+  background-color: #fff;
+  border-radius: 20rpx;
   padding: 20rpx;
-  border-bottom: 1px solid #f1f1f1;
 }
 
-.class-tag{
-  border: 1px solid #07c160;
-  color: #07c160;
-  font-size: 0.6rem;
+
+.lesson_choose{
+  margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 40rpx;
+  justify-content: space-between;
+}
+
+.lesson_choose .choose_left{
+  margin-left: 20rpx;
+  align-items: center;
+}
+
+.lesson_choose .choose_right{
+  align-items:center;
+}
+
+.choose_right > text{
+  margin: 0 20rpx;
+}
+
+.choose_right > text:last-child{
+  margin-right: 0;
+}
+
+.lesson-type-active{
+  font-weight: bold!important;
+}
+
+.lesson-info .lesson-detail-img{
+  width: 100rpx;
+  height: 100rpx;
+  /* border: 1px solid #0052d9; */
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.lesson-type{
+  color: #222;
+  font-size: 1rem;
+  font-weight: bolder;
+  letter-spacing: 5rpx;
+  margin-bottom: 20rpx;
+}
+
+.lesson-code{
+  margin-left: 20rpx;
+}
+
+.lesson-oper > .flex-column{
+  align-items: center;
+}
+
+.lesson-oper > .flex-column > .lesson-oper-wrapper{
   text-align: center;
-  padding: 0 5rpx;
-  border-radius: 3rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: rgba(115, 164, 255, 0.274);
+  border-radius: 25rpx;
+  line-height: 50rpx;
+}
+
+.lesson-oper > .flex-column > text{
+  font-size: 0.7rem;
+  color: #333;
+  /* width: 120rpx; */
+}
+
+.lesson-oper > .flex-column{
+  width: 120rpx;
+}
+
+.lesson-oper{
+  justify-content: space-around;
+  width: 100%;
+}
+
+.listen-lesson-img{
+  /* border: 1px solid #0052d9; */
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.lesson-info .teacher-name{
+  margin-right: 20rpx;
+}
+
+.content-item{
+  width: 85%;
+  padding: 40rpx;
+  /* border: 1px solid red; */
+  margin: 30rpx auto;
+  background-color: #fff;
+}
+
+.content-item .content-avatar-img{
+  width: 100rpx;
+  height: 100rpx;
+  /* border: 1px solid #0052d9; */
+  border-radius: 10rpx;
+  /* margin: 10rpx */
+}
+
+.content-item .pub-time{
+  color: #aaa;
+}
+
+.content-item .content-top{
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-item .content-detail{
+  /* border: 1px solid red; */
+  word-wrap : break-word;
+  margin: 5rpx 0;
+  color: #222;
+}
+
+.content-item .content-avatar-img{
+  margin-right: 30rpx;
+}
+
+.content-item .content-author{
+  color: #0052d9;
+  font-weight: bolder;
+}
+
+.content-item .content-oper-icon{
+  color: #0053d9d2;
+  margin-right: 5rpx;
+}
+
+.content-item .content-imgs-contain{
+  flex-wrap: wrap;
+}
+
+.content-item .content-imgs-contain image{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 5rpx;
+}
+
+.my-view{
+  height: 100%;
+  background-color: #fff;
+}
+
+#avatar-view .avatar-img{
+  width: 230rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  border-radius: 75rpx;
+  /* background-color: #0053d9d2; */
+  margin: 0;
+  padding: 0 14px;
+  /* margin-right: 40rpx; */
+  /* background-color: #fff; */
+  background: none;
+}
+
+button::after{
+  border: none;
+}
+
+.login-btn-wrapper{
+  width: 400rpx;
+  /* border: 1px solid red; */
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  /* background-color: #fff; */
+  /* margin-left: 40rpx; */
+}
+
+#avatar-info .login-btn::after{
+  border: none;
+}
+
+#my-oper-list{
+  margin: auto;
+  margin-top: 40rpx;
+  width: 85vw;
+  padding: 10rpx 30rpx 60rpx 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 0 20rpx #f1f1f1;
+  /* border: 1px solid #eee; */
+}
+
+#my-oper-list .my-oper-item{
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx;
+  /* border-bottom: 1rpx solid #eee; */
+  /* border: 1px solid red; */
+  margin-top: 15rpx;
+}
+
+.my-oper-title{
+  color: #222;
+  align-items: center;
+}
+
+.my-oper-in{
+  color: #ccc;
+}
+
+#avatar-info .login-btn{
+  margin: 0;
+  color: #fff;
+  background-color: #0053d9d2;
+  align-items: flex-start;
+}
+
+#avatar-info .login-btn > text:first-child{
+  font-size: 1.5rem;
+  letter-spacing: 5rpx;
+  font-weight: bold;
+}
+
+#avatar-info .login-btn > text:last-child{
+  letter-spacing: 4rpx;
+}
+
+.my-oper-brief{
+  font-size: 0.9rem;
+  margin-right: 20rpx;
+}
+
+.my-oper-item .my-oper-title > text:first-child{
+  font-size: 1.5rem;
+  margin-right: 10rpx;
+  color: #888;
+}
+
+/* .logout-btn{
+  margin: 40rpx auto 150rpx auto;
+  width:60vw;
+  background-color:#0052d9;
+  color:#fff;
+  letter-spacing:5rpx;
+} */
+
+.user-avatar-img{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 65rpx;
+}
+
+.logined-avatr-img{
+  border-radius: 65rpx;
+  float: right;
+}
+
+.userinfo-view {
+  margin-left: 80rpx;
+  color: #000;
+  padding: 10rpx 50rpx;
+  background-color: #ffffff94;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx #ffffff94;
 }

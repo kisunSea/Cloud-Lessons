@@ -1,0 +1,15 @@
+<!--pages/FAQ/FAQ.wxml-->
+
+<text class='ques-title' space='nbsp' decode>{{content}}</text>
+
+<text class='content'>{{solutions[index]}}</text>
+
+<view id='other-condition'>
+  <view class='flex-row'>
+    <view class='line'></view>
+    <text class='normal-slight-font'>问题未能得到解决</text>
+    <view class='line'></view>
+  </view>
+</view>
+
+<navigator hover-class='navigator-hover' url='/pages/commitQuestion/commitQuestion'>提交问题给我们</navigator>
