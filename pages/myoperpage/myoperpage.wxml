@@ -1,44 +1,55 @@
 
 <!--自定义navbar开始-->
-<view class="dd-navbar"  style="{{'height: ' + navigationBarHeight + 'px'}};">
+<!-- <view class="dd-navbar"  style="{{'height: ' + navigationBarHeight + 'px'}};">
   <view style="{{'padding-top: ' + statusBarHeight + 'px'}}"></view>
   <view class='flex-row title-view' style="height:{{navigationBarHeight-statusBarHeight}}px;line-height:{{navigationBarHeight-statusBarHeight}}px;">
     <text class="icon-in ret_home" style="font-size:1.5rem;margin-left:30rpx;" bindtap="_ret_home"></text>
     <text class="nav-title">{{opertitle}}</text>
   </view>
-</view>
+</view> -->
 <!--自定义navbar结束-->
 
 <!--根据操作类型确定页面参数-->
 
 
 <!--绑定faceID-->
-<block wx:if="{{type == 1}}">
+<!-- <block wx:if="{{type == 1}}">
   <view class="face-id-container">
-    绑定faceID
   </view>
-</block>
+</block> -->
 
 
 <!--身份认证-->
-<block wx:if="{{type == 2}}">
+<!-- <block wx:if="{{type == 2}}">
   <view class="identity-container">
     身份认证
   </view>
-</block>
+</block> -->
 
 
 <!--消息订阅-->
-<block wx:if="{{type == 3}}">
+<!-- <block wx:if="{{type == 3}}">
   <view class="sub-message-container">
     消息订阅
   </view>
-</block>
+</block> -->
 
 
 <!--联系我们-->
-<block wx:if="{{type == 4}}">
+<!-- <block wx:if="{{type == 4}}">
   <view class="face-id-container">
     绑定faceID
   </view>
-</block>
+</block> -->
+
+
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <camera device-position="front" flash="off" binderror="error" style="width:100%;height:{{windowWidth}}px;"></camera>
+    <canvas wx:if="{{canvasshow}}" style="width: 100%;height:{{windowWidth}}px;position:absolute;" canvas-id="canvas"></canvas>
+    <view class="btn-area">
+      <button type="primary" bindtap="track" data-trackshow="{{trackshow}}">{{trackshow}}</button>
+    </view>
+    
+  </view>
+</view>

@@ -426,7 +426,7 @@
     <view id="my-oper-list">
       
       <!--我的faceID-->
-      <navigator url="/page/myoperpage/myoperpage?oper_type=0">
+      <navigator url="/pages/myoperpage/myoperpage?oper_type=0">
       <view class="flex-row my-oper-item">
         <view class="flex-row my-oper-title">
           <text class="icon-faceide"></text>
@@ -440,7 +440,7 @@
       </navigator>
 
       <!--身份认证-->
-      <navigator url="/page/myoperpage/myoperpage?oper_type=1">
+      <navigator url="/pages/myoperpage/myoperpage?oper_type=1">
       <view class="flex-row my-oper-item">
         <view class="flex-row my-oper-title">
           <text class="icon-identity"></text>
@@ -455,7 +455,7 @@
       <view style="width:20%;border-top: 1px solid #0052d9;margin: 10rpx auto;"></view>
 
       <!--消息订阅-->
-      <navigator url="/page/myoperpage/myoperpage?oper_type=2">
+      <navigator url="/pages/myoperpage/myoperpage?oper_type=2">
       <view class="flex-row my-oper-item">
         <view class="flex-row my-oper-title">
           <text class="icon-msg-sub"></text>
@@ -470,7 +470,7 @@
       </navigator>
 
       <!--清除缓存-->
-      <navigator url="/page/myoperpage?oper_type=3">
+      <navigator url="/pages/myoperpage?oper_type=3">
       <view class="flex-row my-oper-item">
         <view class="flex-row my-oper-title">
           <text class="icon-remove-cache"></text>

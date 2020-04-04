@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 var base64 = require("../../components/images/base64");
+const utils = require('../../utils/util.js')
 
 Page({
   data: {
@@ -79,7 +80,7 @@ Page({
     // 中部nav
     navs: [
       {
-        'nav_name': '免费资源',
+        'nav_name': '图书角',
         'nav_img': '/static/imgs/nav_files.png',
         'url': '/pages/msgs/msgs',
       },
@@ -469,12 +470,29 @@ Page({
 
   // 身份信息获取已经在onLoad中执行
   getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-    })
+    let info = e.detail.userInfo
+    if (info){
+      app.globalData.userInfo = info
+      this.setData({
+        userInfo: info,
+        hasUserInfo: true,
+      })
+
+      // 若成功授权且有合法的userInfo则登录到服务器
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+            wx.getUserInfo({
+              success: res => {
+                utils.login(res.code, e.detail.userInfo)
+              }
+            })
+          }
+        }    
+      })
+
+    }
   },
 
   // 添加班课或加入班课时，触发actionsheet

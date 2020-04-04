@@ -1,78 +1,52 @@
-/* pages/dayword/dayword.wxss */
-page{
-  background: linear-gradient(-180deg, #002c6ead, #000c20fb);
+.preview-tips {
+  margin: 50rpx 0  30rpx;  
 }
 
-.dd-navbar{
-  position: fixed;
-  z-index: 100;
-  /* border: 1px solid red; */
+.video {
+  margin: 20rpx auto;
   width: 100%;
+  height: 300px;
 }
 
-.ret_home{
-  /* position: relative; */
-  transform: rotate(180deg);
-  color: #eee;
-  /* margin-right: 100rpx; */
+page {
+  background-color: #fff;
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
 }
 
-.title-view{
+.page-body {
+  /* padding: 20rpx 0; */
+}
+
+.page-body-wrapper {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-.nav-title{
-  color: #fff;
-  font-size: larger;
-  font-weight: 600;
-  margin-left: 100rpx;
-}
-
-.ddw-no{
-  margin-left: 20rpx;
-  color: #aaa;
-}
-
-.author-head-img > image{
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 40rpx;
-}
-
-.ddw-detail{
-  padding: 50rpx;
-}
-
-.word-quota{
-  font-size: 5rem;
-  color: #aaa;
-  display: inline-block;
-  height: 4.5rem;
-
-}
-
-
-.quota-content{
-  color: #fff;
-  font-size: larger;
-}
-
-.quota-favor{
-  color: #aaa;
-  font-size: 1.5rem;
-  float: right;
-  display: block;
-}
-
-.contribute-quota{
-  position: fixed;
-  bottom: 0;
-  /* border: 1px solid red; */
-  height: 50px;
   width: 100%;
-  line-height: 50px;
+}
+
+.btn-area {
+  margin-top: 40rpx;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 30rpx;
+}
+
+
+button{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  color: #222!important;
+  font-size: 1rem;
   text-align: center;
-  background-color: rgba(51, 51, 51, 0.801);
-  color: #aaa;
-  letter-spacing: 5rpx;
+  line-height: 100px;
+  font-weight: 700;
+  background-color: rgba(238, 238, 238, 0.815)!important;
+  box-shadow: 0 0 5rpx rgba(238, 238, 238, 0.815);
+}
+
+button::after{
+  border: None!important;
 }

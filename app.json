@@ -1,5 +1,7 @@
 {
   "pages": [
+
+    
     "pages/index/index",
     "pages/localcomponents/index/index",
     "pages/logs/logs",
@@ -13,6 +15,8 @@
     "pages/dayword/dayword",
     "pages/signin/signin",
     "pages/myoperpage/myoperpage"
+    
+
   ],
   "window": {
     "navigationStyle": "default"
