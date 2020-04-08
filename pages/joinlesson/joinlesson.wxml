@@ -1,0 +1,56 @@
+<!--pages/joinlesson/joinlesson.wxml-->
+
+<!--创建班课-->
+<block wx:if='{{oper_type == 1}}'>
+
+<view class="flex-column c-leson-container">
+
+  <view class="c-lesson-item">
+    <text class="item-title">专业大类</text>
+    <view class="c-item-picker">
+      <picker bindchange="subject_classify_choose" value="{{0}}" range="{{subjects_classifies}}" range-key='desc'>
+        <input value="{{choosed_lesson_cls.desc}}" class="{{choosed_lesson_cls.code == '00' ? 'unchoosen' : ''}}" disabled="true"></input>
+      </picker>
+    </view>
+  </view>
+  
+  <view class="c-lesson-item">
+    <text class="item-title">课程名称</text>
+    <view class="c-item-picker">
+      <input placeholder="请输入课程名称" bindconfirm="lesson_name" bindblur="lesson_name"></input>
+    </view>
+  </view>
+
+  <view class="c-lesson-item">
+    <text class="item-title">学年</text>
+    <view class="c-item-picker">
+      <input value="{{year}}" disabled="true"></input>
+    </view>
+  </view>
+
+  <view class="c-lesson-item">
+    <text class="item-title">学期</text>
+    <view class="c-item-picker">
+      <picker bindchange="term_choose" value="{{0}}" range="{{terms}}">
+        <input disabled="true" value="{{ choose_term==0 ? '请选择学期' : choose_term}}" class="{{choose_term == 0 ? 'unchoosen' : ''}}" ></input>
+      </picker>
+    </view>
+  </view>
+  
+  <view class="c-lesson-item">
+    <text class="item-title">介绍</text>
+    <view class="c-item-picker">
+      <input placeholder="说点什么吧" bindconfirm="lesson_desc" bindblur="lesson_desc"></input>
+    </view>
+  </view>
+
+  <button class="c-lesson-btn" bindtap="create_lesson">立即创建</button>
+
+</view>
+</block>
+
+<!--手动加入班课-->
+<block wx:else>
+
+</block>
+

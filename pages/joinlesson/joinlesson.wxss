@@ -1,0 +1,51 @@
+/* pages/joinlesson/joinlesson.wxss */
+
+page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+
+.c-item-picker{
+  /* width: 80%; */
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #0052d9;
+}
+
+.c-item-picker input{
+  vertical-align: center;
+  display: inline-block;
+}
+
+.unchoosen{
+  color: #aaa;
+}
+
+.c-leson-container{
+  justify-content: space-between;
+  width: 80%;
+}
+
+.c-lesson-item{
+  margin-bottom: 40rpx;
+}
+
+.c-lesson-btn{
+  background-color: #0052d9;
+  color: #fff;
+  width: 300rpx;
+  margin-top: 30rpx;
+}
+
+button::after{
+  border: none!important;
+}

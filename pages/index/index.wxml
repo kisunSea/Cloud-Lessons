@@ -280,9 +280,9 @@
               <view class="weui-actionsheet__title-text blue-default-color">创建或加入班课操作</view>
           </view>
           <view class="weui-actionsheet__menu">
-              <view class="weui-actionsheet__cell">创建班课</view>
+              <view class="weui-actionsheet__cell" data-type="1" bindtap="join_lesson">创建班课</view>
               <view class="weui-actionsheet__cell" bindtap="scanf_qr_code">加入班课(扫码)</view>
-              <view class="weui-actionsheet__cell">加入班课(手动)</view>
+              <view class="weui-actionsheet__cell" data-type="2" bindtap="join_lesson">加入班课(手动)</view>
               <!-- <view class="weui-actionsheet__cell weui-actionsheet__cell_warn">清空班课</view> -->
           </view>
           <view class="weui-actionsheet__action">

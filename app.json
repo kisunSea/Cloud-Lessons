@@ -1,7 +1,6 @@
 {
   "pages": [
-
-    
+    "pages/joinlesson/joinlesson",
     "pages/index/index",
     "pages/localcomponents/index/index",
     "pages/logs/logs",
@@ -14,8 +13,13 @@
     "pages/msgs/msgs",
     "pages/dayword/dayword",
     "pages/signin/signin",
-    "pages/myoperpage/myoperpage"
+    "pages/myoperpage/myoperpage",
     
+    "pages/identifyauth/identifyauth",
+    "pages/msgrss/msgrss",
+    "pages/favor/favor",
+    "pages/books/books",
+    "pages/lessonoper/lessonoper"
 
   ],
   "window": {

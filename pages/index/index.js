@@ -537,6 +537,16 @@ Page({
         console.log(res)
       }
     })
+  },
+
+
+  // 创建班课或加入班课
+  join_lesson: function(res){
+    var type;
+    type = res.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: '/pages/joinlesson/joinlesson?type='+type,
+    })
   }
 
 })

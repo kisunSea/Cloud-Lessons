@@ -16,7 +16,8 @@ const formatNumber = n => {
 
 // 'https://www.kisunning.cn',
 // 'http://134.175.27.71:8080'
-const http_domain = 'http://localhost:8000'
+// 'http://localhost:8000'
+const http_domain = 'http://134.175.27.71:8008'
 
 const http_urls = {
 
@@ -26,9 +27,11 @@ const http_urls = {
   // 上传人脸数据
   face_record: http_domain + '/api/v1/wx_client/face_feature/record',
 
-  // `首页`
+  // 创建班课 - 获取课程分类数据
+  subject_classifies: http_domain + '/api/v1/wx_client/lesson/subjects-classifies',
 
-  // `课程圈`
+  // 创建班课
+  create_lesson: http_domain + '/api/v1/wx_client/lesson/',
 
   // `搜索`
 }
