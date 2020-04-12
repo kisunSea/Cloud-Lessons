@@ -1,0 +1,32 @@
+/* pages/createarticle/createarticle.wxss */
+
+.weui-form{
+  padding: 0!important;
+}
+
+.addr{
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addr .addr-l text:first-child{
+  margin-right: 40rpx;
+}
+
+.file-content-mask{
+  width: 30px;
+  height: 30px;
+  /* border: 1px solid red; */
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  top: 0;
+  border-bottom-left-radius: 8px;
+  background-color: #fff;
+  right: 0;
+  color: #888;
+}
+
+.weui-uploader__img{
+  border-radius: 10rpx;
+}

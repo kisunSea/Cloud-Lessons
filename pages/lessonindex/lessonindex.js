@@ -1,5 +1,6 @@
 // pages/lessonindex/lessonindex.js
 const app=getApp();
+const utils=require('../../utils/util.js')
 
 Page({
 
@@ -9,6 +10,7 @@ Page({
   data: {
     lesson_data: { "cls_code": "daw42ewqdewe798q42hjdaw", "name": "计算机科学与技术2", "head_img": "http://134.175.27.71/images/lesson_type_computer.jpg", "cls_img": "", "stu_num": 34, "is_finish": false },
     type: 0,
+    lesson_code: '',
     // 状态栏高度
     statusBarHeight: app.globalData.sysinfo.statusHeight,
     // 顶部默认导航高度
@@ -41,7 +43,7 @@ Page({
         'icon_class': 'icon-help',
       },
       {
-        'oper_name': '讨论区',
+        'oper_name': '发布任务',
         'icon_class': '.icon-debat',
       },
       {
@@ -57,6 +59,35 @@ Page({
         'icon_class': 'icon-lesson-out',
       },
     ],
+
+    // 听课操作
+    l_oper_list: [
+      {
+        'oper_name': '签到',
+        'icon_class': 'icon-signed',
+      },
+      {
+        'oper_name': '课堂资源',
+        'icon_class': 'icon-source',
+      },
+      {
+        'oper_name': '我的表现',
+        'icon_class': 'icon-score',
+      },
+      {
+        'oper_name': '答疑区',
+        'icon_class': 'icon-help',
+      },
+      {
+        'oper_name': '退出班课',
+        'icon_class': 'icon-lesson-out',
+      },
+    ],
+
+    resource_num: 0,
+    questions_num: '0/0',
+    notice_num: 0,
+    stu_num: 0,
 
     // 教学跟踪默认展示全部
     display_track_idx: 0,
@@ -155,6 +186,9 @@ Page({
 
     // 当前展示
     display_track_list: [],
+
+    // 班课信息定时请求
+    lessoninfo_timer: null,
   },
 
   /**
@@ -162,15 +196,47 @@ Page({
    */
   onLoad: function (options) {
 
+    let that = this
+
     this.setData({
-      lesson_data: JSON.parse(options.lesson_data),
+      lesson_code: options.lesson_code,
       type: parseInt(options.type),
     });
 
     // todo http获取全部跟踪项目
 
     this.setData({
-      'display_track_list': this.data.track_all_list,
+      display_track_list: this.data.track_all_list,
+    })
+
+
+    wx.request({
+      url: utils.http_urls.lesson_index,
+      method: "GET",
+      data: {
+        token: wx.getStorageSync('jwt_token'),
+        lesson_code: that.data.lesson_code,
+        type: that.data.type,
+      },
+      success: function (r) {
+        console.log(r.data)
+        if (r.data.r == 0) {
+          that.setData({
+            lesson_data: r.data.data.lesson_data,
+            resource_num: r.data.data.resource_num,
+            questions_num: r.data.data.questions_num,
+            notice_num: r.data.data.notice_num,
+            stu_num: r.data.data.stu_num,
+            track_all_list: r.data.data.teach_schedulers.track_all_list,
+            track_active_list: r.data.data.teach_schedulers.track_active_list,
+            track_deactive_list: r.data.data.teach_schedulers.track_deactive_list,
+            track_toactive_list: r.data.data.teach_schedulers.track_toactive_list,
+          })
+        } else {
+          // 请求班课数据失败
+          console.log('请求班课数据失败：\t', response.errmsg);
+        }
+      }
     })
   },
 
@@ -185,21 +251,54 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    //定时获取我教/听的课
+    that.data.lessoninfo_timer = setInterval(
+      function () {
+        wx.request({
+          url: utils.http_urls.lesson_index,
+          method: "GET",
+          data: {
+            token: wx.getStorageSync('jwt_token'),
+            lesson_code: that.data.lesson_code,
+            type: that.data.type,
+          },
+          success: function (r) {
+            console.log(r.data)
+            if (r.data.r == 0) {
+              that.setData({
+                lesson_data: r.data.data.lesson_data,
+                resource_num: r.data.data.resource_num,
+                questions_num: r.data.data.questions_num,
+                notice_num: r.data.data.notice_num,
+                stu_num: r.data.data.stu_num,
+                track_all_list: r.data.data.teach_schedulers.track_all_list,
+                track_active_list: r.data.data.teach_schedulers.track_active_list,
+                track_deactive_list: r.data.data.teach_schedulers.track_deactive_list,
+                track_toactive_list: r.data.data.teach_schedulers.track_toactive_list,
+              })
+            } else {
+              // 请求班课数据失败
+              console.log('请求班课数据失败：\t', response.errmsg);
+            }
+          }
+        })
+      }
+      , 3000);
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
+  // 清除定时器
   onHide: function () {
-
+    let that = this;
+    clearInterval(that.data.lessoninfo_timer)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    let that = this;
+    clearInterval(that.data.lessoninfo_timer)
   },
 
   /**

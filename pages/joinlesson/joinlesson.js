@@ -2,6 +2,7 @@
 
 
 const util = require('../../utils/util.js')
+const app = getApp()
 
 Page({
 
@@ -9,7 +10,62 @@ Page({
    * 页面的初始数据
    */
   data: {
-    oper_type: 1,   // 1 表示创建班课， 2表示手动加入班课(班课码)
+    oper_type: 2,   // 1 表示创建班课， 2表示手动加入班课(班课码)
+
+    lesson_clses: [
+      {
+        'key': '01',
+        'value': '哲学类',
+      },
+      {
+        'key': '02',
+        'value': '经济学类',
+      },
+      {
+        'key': '03',
+        'value': '法学类',
+      },
+      {
+        'key': '04',
+        'value': '教育学类',
+      },
+      {
+        'key': '05',
+        'value': '文学类',
+      },
+      {
+        'key': '06',
+        'value': '历史学类',
+      },
+      {
+        'key': '07',
+        'value': '理学类',
+      },
+      {
+        'key': '08',
+        'value': '工学类',
+      },
+      {
+        'key': '09',
+        'value': '农学类',
+      },
+      {
+        'key': '10',
+        'value': '医学类',
+      },
+      {
+        'key': '12',
+        'value': '管理学类',
+      },
+      {
+        'key': '13',
+        'value': '艺术学类',
+      },
+      {
+        'key': '00',
+        'value': '哲学类',
+      },
+    ],
 
     subjects_classifies: [  // 课程大类分类集合
       {
@@ -34,6 +90,8 @@ Page({
       },
     ],
 
+    errmsg: '',
+
     // 学期
     terms: [1, 2],
     year: '2020',
@@ -43,41 +101,65 @@ Page({
     choose_term: 0,
     lesson_name: "",
     lesson_desc: "",
+
+
+
+    // 手动加入班课
+    value: '',
+    showClearBtn: false,
+    isWaring: false,
+    join_lesson_info: null,
+    research: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let title = ''
+
     let that = this
-    if (that.data.oper_type == 1){
+    let join_lesson_info = options.lessoninfo;
+    if (options.lessoninfo){
+      that.setData({
+        join_lesson_info: JSON.parse(options.lessoninfo),
+        research: false,
+        value: JSON.parse(options.lessoninfo).lesson_code,
+      })
+    }
+
+    let title = ''
+    let oper_type = parseInt(options.oper_type);
+    console.log('oper_type:', oper_type)
+    if (oper_type == 1){
       title = '创建班课'
+      // 获取课程分类数据
+      wx.request({
+        url: util.http_urls.subject_classifies,
+        success: function (res) {
+          console.log('课程大类集合:\t', res.data.data)
+          if (res.data.data.r == 0) {
+            that.setData({
+              subjects_classifies: res.data.data
+            })
+          }
+        }
+      })
+
+      // 获取当前年份
+      var myDate = new Date();
+      var tYear = myDate.getFullYear();
+      that.setData({
+        year: tYear,
+      })
     }else{
       title = '加入班课'
     }
     wx.setNavigationBarTitle({
       title: title,
     })
-    
-    // 获取课程分类数据
-    wx.request({
-      url: util.http_urls.subject_classifies,
-      success: function(res){
-        console.log('课程大类集合:\t', res.data.data)
-        if (res.data.r == 0) {
-          that.setData({
-            subjects_classifies: res.data.data
-          })
-        }
-      }
-    })
 
-    // 获取当前年份
-    var myDate = new Date();
-    var tYear = myDate.getFullYear();
     that.setData({
-      year: tYear,
+      oper_type: oper_type,
     })
 
   },
@@ -93,7 +175,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.sliderightshow(this, 'slide_show', -300, 1)
+    setTimeout(function () {
+      app.sliderightshow(this, 'slide_show', 0, 1)
+    }.bind(this), 300);
   },
 
   /**
@@ -181,14 +266,18 @@ Page({
     console.log('lesson year:\t', that.data.year)
     console.log('##################################')
 
-    if (that.data.lesson_name){
+    if (that.data.lesson_name == ''){
       errmsg = '请输入课程名称'
     }
-    else if (that.data.choose_term){
+    else if (that.data.choose_term == 0){
       errmsg = '请选择学期'
     }
 
-    if (errmsg == ''){
+    that.setData({
+      errmsg: errmsg
+    })
+
+    if (errmsg != ''){
       return
     }
 
@@ -204,8 +293,119 @@ Page({
         token: wx.getStorageSync('jwt_token'),
       },
       success: function(response){
-        console.log(response)
+        
+        // 创建成功就跳转页面
+        if (response.data.r == 0){
+          wx.navigateTo({
+            url: '/pages/successtip/successtip' + '?type=create_lesson&data=' + JSON.stringify(response.data.data),
+          })
+        }
       }
     })
-  }
+  },
+
+
+  // 关闭
+  close: function(res){
+    this.setData({
+      errmsg: '',
+    })
+  },
+
+
+  // 手动加入班课
+  onInput(evt) {
+    const { value } = evt.detail;
+    this.setData({
+      value,
+      showClearBtn: !!value.length,
+      isWaring: false,
+    });
+  },
+  onClear() {
+    this.setData({
+      value: '',
+      showClearBtn: false,
+      isWaring: false,
+    });
+  },
+
+  onConfirm() {
+    
+    let that = this
+    
+    if (!RegExp('^[A-Z0-9]{7}$').test(that.data.value) ) {
+      that.setData({
+        isWaring: true,
+        join_lesson_info: null,
+      });
+      return;
+    }
+
+    wx.request({
+      url: util.http_urls.lesson_index,
+      method: "GET",
+      data: {
+        token: wx.getStorageSync('jwt_token'),
+        lesson_code: this.data.value,
+      },
+      success: function(res){
+        if (res.data.r == 0){
+          console.log('班课信息：', res.data.data.lesson_data);
+          that.setData({
+            join_lesson_info: res.data.data.lesson_data,
+          })
+          return
+        }
+      }
+    })
+  },
+
+  // 确认加入班课
+  confirm_join_lesson: function(res){
+    let that  = this
+    if (!RegExp('^[A-Z0-9]{7}$').test(that.data.value)){
+      return
+    }
+    else{
+      wx.request({
+        url: util.http_urls.create_lesson,
+        method: 'PUT',
+        data: {
+          token: wx.getStorageSync('jwt_token'),
+          lesson_code: that.data.value,
+        },
+        success: function(res){
+          if (res.statusCode != 200){
+            wx.showToast({
+              title: '加入失败，角色类型错误！',
+              icon: 'none',
+              duration: 2000,
+            })
+
+            setTimeout(function(){
+              wx.hideToast();
+            }, 2000)
+
+          }else{
+            wx.showToast({
+              title: '加入班课成功',
+              duration: 2000,
+              success: function(res){
+                wx.redirectTo({
+                  url: '../index/index',
+                })
+              }
+            })
+          }
+        }
+      })
+    }
+  },
+
+  research: function(res){
+    this.setData({
+     join_lesson_info: null 
+    })
+  },
 })

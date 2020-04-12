@@ -1,0 +1,102 @@
+<!--pages/createarticle/createarticle.wxml-->
+<!--发布说说-->
+
+<!-- <view wx:if="{{errmsg}}" class="weui-toptips weui-toptips_warn fadeIn {{hide ? 'fadeOut' : ''}}">错误提示</view> -->
+
+<view class="weui-form fadeIn"  animation="{{slide_show}}">
+  <view class="weui-form__control-area" style="margin:0">
+  <view class="weui-cells">
+    <!--说说正文-->
+    <view class="weui-cell ">
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea" placeholder="说点什么..." rows="3" bindinput="article_input"></textarea>
+        <view class="weui-textarea-counter"><text>{{word_count}}</text>/1000</view>
+      </view>
+    </view>
+    <!--uploader-->
+    <view class="weui-cell">
+        <view class="weui-cell__bd">
+            <view class="weui-uploader">
+                <!-- <view class="weui-uploader__hd">
+                  <view class="weui-uploader__overview">
+                      <view class="weui-uploader__title">图片上传</view>
+                      <view class="weui-uploader__info">{{files.length}}/2</view>
+                  </view>
+                  <view class="weui-uploader__tips">
+                    上传提示
+                  </view>
+                </view> -->
+                <view class="weui-uploader__bd">
+                    <view class="weui-uploader__files" id="uploaderFiles">
+                        <block wx:for="{{upload_picture_list}}" wx:key="*this">
+                            <view class="weui-uploader__file" style="position:relative;" id="{{index}}" data-index="{{index}}" data-image="{{item.path_server}}" bindtap="previewImage">
+                                
+                                <!--上传成功就显示服务器地址-->
+                                <block wx:if="{{item.path_server != ''}}">
+                                  <image class="weui-uploader__img" src="{{item.path_server}}"  mode="aspectFill"/>
+                                  <view class="file-content-mask" data-index="{{index}}" catchtap="deleteImg">
+                                    <view class="weui-icon-delete"></view>
+                                  </view>
+                                </block>
+
+                                <!--未上传成功的显示临时地址-->
+                                <block wx:else>
+                                  <image class="weui-uploader__img weui-uploader__file_status" src="{{item.tmp_file}}" mode="aspectFill" bindtap="" />
+                                  <view class="weui-uploader__file-content">
+                                     <view class="weui-loading"></view>
+                                  </view>
+                                </block>
+                                
+                            </view>
+                        </block>
+                        <!-- <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">
+                              <view class="weui-loading"></view>
+                            </view>
+                        </view>
+                        <view class="weui-uploader__file weui-uploader__file_status">
+                            <image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill" />
+                            <view class="weui-uploader__file-content">
+                                <icon type="warn" size="23" color="#F43530"></icon>
+                            </view>
+                        </view> -->
+                    </view>
+                    <view class="weui-uploader__input-box" wx:if="{{ upload_length <= 5}}">
+                        <view class="weui-uploader__input" bindtap="uploadpic"></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--所在位置-->
+    <view class="weui-cell">
+      <view class="weui-cell_bd" style="width:100%;" bindtap="get_address">
+        <view class="flex-row addr">
+          <view class="addr-l">
+            <text class="icon-address {{ has_addr==true ? 'blue-normal' : ''}}"></text>
+            <text wx:if="{{!has_addr}}">所在位置</text>
+            <text class="blue-normal" wx:else>{{address.name=='' ? address.address : address.name}}</text>
+          </view>
+          <text class="icon-in addr-r" style="font-size:0.9rem!important;"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-form__opr-area" style="margin-top:80rpx;">
+    <a class="weui-btn weui-btn_primary" bindtap="pub_article">发表</a>
+  </view>
+
+  </view>
+
+
+</view>
+
+
+
+
+
+
+
+

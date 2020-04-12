@@ -14,6 +14,10 @@ Page({
     write: [0, 0], //定位参数
     scrolltop: 0,//据顶部距离
 
+    lesson_timer: null,  // 我教/听的课程定时器
+
+    page: 1,
+
     add_sure: false,
     hasSearchWidget: false,
     title: "移动教学助手",
@@ -104,99 +108,66 @@ Page({
     teach_cls_open: false, //是否点击了展开我的授课
     listen_cls_open: true, //是否展开了我听的课
 
-    // 我教的课
-    teach_cls_list: [
+    lesson_clses: [
       {
-        'cls_type': '计算机',
-        'cls_code': 'daw42ewqdewe798q42hjdaw', 
-        'name': '计算机科学与技术',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 34,  // 学生人数
-        'is_finish': false,  // 是否结课
+        'key': '01',
+        'value': '哲学类',
       },
       {
-        'cls_type': '计算机',
-        'cls_code': 'daw42ewqdewe798q4hjdaw', 
-        'name': '物联网工程',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 67,  // 学生人数
-        'is_finish': false,  // 是否结课
+        'key': '02',
+        'value': '经济学类',
       },
       {
-        'cls_type': '计算机',
-        'cls_code': 'daw42ewqdewe79q42hjdaw', 
-        'name': '软件工程',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 45,  // 学生人数
-        'is_finish': false,  // 是否结课
+        'key': '03',
+        'value': '法学类',
       },
       {
-        'cls_type': '计算机',
-        'cls_code': 'daw42ewqdwe798q42hjdaw',
-        'name': '环境工程',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 14,  // 学生人数
-        'is_finish': false,  // 是否结课
+        'key': '04',
+        'value': '教育学类',
       },
       {
-        'cls_type': '计算机',
-        'cls_code': 'daw42ewdewe798q42hjdaw',
-        'name': '数字媒体技术',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_teach.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 32,  // 学生人数
-        'is_finish': false,  // 是否结课
+        'key': '05',
+        'value': '文学类',
+      },
+      {
+        'key': '06',
+        'value': '历史学类',
+      },
+      {
+        'key': '07',
+        'value': '理学类',
+      },
+      {
+        'key': '08',
+        'value': '工学类',
+      },
+      {
+        'key': '09',
+        'value': '农学类',
+      },
+      {
+        'key': '10',
+        'value': '医学类',
+      },
+      {
+        'key': '12',
+        'value': '管理学类',
+      },
+      {
+        'key': '13',
+        'value': '艺术学类',
+      },
+      {
+        'key': '00',
+        'value': '哲学类',
       },
     ],
 
+    // 我教的课
+    teach_cls_list: [],
 
     // 我听的课
-    Listen_cls_list: [
-      {
-        'cls_code': 'daw42ewqdewe798q42hjdaw',
-        'name': '计算机科学与技术2',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 34,  // 学生人数
-        'is_finish': false,  // 是否结课
-      },
-      {
-        'cls_code': 'daw42ewqdewe798q4hjdaw',
-        'name': '物联网工程2',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 67,  // 学生人数
-        'is_finish': false,  // 是否结课
-      },
-      {
-        'cls_code': 'daw42ewqdewe79q42hjdaw',
-        'name': '软件工程2',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 45,  // 学生人数
-        'is_finish': false,  // 是否结课
-      },
-      {
-        'cls_code': 'daw42ewqdwe798q42hjdaw',
-        'name': '环境工程2',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 14,  // 学生人数
-        'is_finish': false,  // 是否结课
-      },
-      {
-        'cls_code': 'daw42ewdewe798q42hjdaw',
-        'name': '数字媒体技术2',  // 班课名
-        'head_img': 'http://134.175.27.71/images/lesson_type_computer.jpg',
-        'cls_img': '',  // 班课头像
-        'stu_num': 32,  // 学生人数
-        'is_finish': false,  // 是否结课
-      },
-    ],
+    Listen_cls_list: [],
 
     // 说说卡片
     content_items: [
@@ -380,6 +351,30 @@ Page({
 
   },
 
+  onPullDownRefresh: function(){
+    let that = this
+    if (this.data.currentTab==1){
+      // 请求最新的数据
+      wx.request({
+        url: utils.http_urls.saying,
+        data: {
+          token: wx.getStorageSync('jwt_token'),
+          page: 1,
+          size: 10,
+        },
+        success: function (res) {
+          console.log('说说：', res.data)
+          that.setData({
+            page: 1,
+            content_items: res.data,
+          })
+        },
+      })
+    }else{
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }
+  },
+
   onPageScroll: function(e){
     // console.log(e.scrollTop);
     let that = this;
@@ -393,7 +388,7 @@ Page({
     // console.log('高度' + that.data.nav_items_fixed_height+'\t'+that.data.nav_items_topheight);
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     let that = this;
     // 用户已经授权登录
     if (app.globalData.userInfo) {
@@ -465,6 +460,101 @@ Page({
     //   })
     // }).exec();
 
+
+    // //定时获取我教/听的课
+    // that.data.lesson_timer = setInterval(
+    //   function () {
+
+    //     wx.request({
+    //       url: utils.http_urls.create_lesson,
+    //       method: "GET",
+    //       data: {
+    //         token: wx.getStorageSync('jwt_token'),
+    //       },
+    //       success: function (r) {
+    //         console.log(r.data)
+    //         if (r.data.r == 0) {
+    //           that.setData({
+    //             teach_cls_list: r.data.data.create,
+    //             Listen_cls_list: r.data.data.listen
+    //           })
+    //         } else {
+    //           // 请求班课数据失败
+    //           console.log('请求班课数据失败：\t', response.errmsg);
+    //         }
+    //       }
+    //     })
+    //   }
+    //   , 3000);
+
+    if (options.currentTab){
+      // console.log('首页currentTab',  options.currentTab)
+      that.setData({
+        currentTab: options.currentTab,
+      })
+
+      // 请求最新的数据
+      wx.request({
+        url: utils.http_urls.saying,
+        data: {
+          token: wx.getStorageSync('jwt_token'),
+          page: 1,
+          size: 10,
+        },
+        success: function(res){
+          console.log(res)
+        },
+      })
+    }
+
+  },
+
+  onReachBottom: function(){
+
+  },
+
+
+  onShow: function(){
+    let that = this
+
+    //定时获取我教/听的课
+    that.data.lesson_timer = setInterval(
+      function () {
+
+        wx.request({
+          url: utils.http_urls.create_lesson,
+          method: "GET",
+          data: {
+            token: wx.getStorageSync('jwt_token'),
+          },
+          success: function (r) {
+            console.log(r.data)
+            if (r.data.r == 0) {
+              that.setData({
+                teach_cls_list: r.data.data.create,
+                Listen_cls_list: r.data.data.listen
+              })
+            } else {
+              // 请求班课数据失败
+              console.log('请求班课数据失败：\t', response.errmsg);
+            }
+          }
+        })
+      }
+      , 3000);
+  },
+
+  // 清除定时器
+  onHide: function(){
+    let that = this
+
+    if (that.data.lesson_timer != null){
+      clearInterval(that.data.lesson_timer)
+    }
+
+    that.setData({
+      add_sure: false,
+    })
   },
 
 
@@ -495,6 +585,7 @@ Page({
     }
   },
 
+
   // 添加班课或加入班课时，触发actionsheet
   openAddActionDialog: function(e) {
     var that = this;
@@ -524,7 +615,7 @@ Page({
     // 0 表示 我加入的课
     let cur_data = res.currentTarget.dataset;
     wx.navigateTo({
-      url: '/pages/lessonindex/lessonindex?lesson_data=' + JSON.stringify(cur_data.lessondata) + '&type=' + cur_data.type,
+      url: '../lessonindex/lessonindex?lesson_code=' + cur_data.lesson_code + '&type=' + cur_data.type,
     })
   },
 
@@ -535,6 +626,22 @@ Page({
       scanType: ['qrCode',],
       success(res) {
         console.log(res)
+        wx.request({
+          url: utils.http_urls.lesson_index,
+          method: "GET",
+          data: {
+            token: wx.getStorageSync('jwt_token'),
+            lesson_code: res.result,
+          },
+          success: function (res) {
+            if (res.data.r == 0) {
+              console.log('班课信息：', res.data.data.lesson_data);
+              wx.redirectTo({
+                url: '../joinlesson/joinlesson?lessoninfo=' + JSON.stringify(res.data.data.lesson_data) + '&oper_type=2',
+              })
+            }
+          }
+        })
       }
     })
   },
@@ -544,9 +651,28 @@ Page({
   join_lesson: function(res){
     var type;
     type = res.currentTarget.dataset.type;
+    console.log('type:\t', type)
     wx.navigateTo({
-      url: '/pages/joinlesson/joinlesson?type='+type,
+      url: '/pages/joinlesson/joinlesson?oper_type=' + type,
     })
-  }
+  },
 
+
+  startSetInter: function () {
+    
+  },
+
+  endSetInter: function () {
+    var that = this;
+    //清除计时器  即清除setInter
+    clearInterval(that.data.setInter)
+  },
+
+  // 预览
+  image_preview: function(e) {
+    var image
+    image = e.target.dataset.images
+    console.log('预览图片: \t',image)
+    utils.image_preview([image, ])
+  }
 })

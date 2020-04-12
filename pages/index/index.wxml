@@ -165,17 +165,17 @@
           <view class="{{listen_cls_open ? 'weui-cells_show' : ''}}">
               <block wx:for="{{Listen_cls_list}}" wx:key="index">
 
-                <view class="lesson-item" data-lessondata="{{item}}" data-type="0" bindtap="navigateToLessonIndex">
+                <view class="lesson-item" data-lesson_code="{{item.lesson_code}}" data-type="1" bindtap="navigateToLessonIndex">
                   <!--班课信息-->
                   <view class="lesson-info">
-                    <image class="listen-lesson-img" src="{{item.head_img}}"></image>
+                    <image class="listen-lesson-img" src="{{item.cls_img}}"></image>
                     <view class="flex-column" style="flex:1;">
                       <view class="flex-row" style="justify-content: space-between;">
                         <view class="flex-column">
-                          <text class="lesson-type" style="margin-bottom:0;">计算机</text>
+                          <text class="lesson-type" style="margin-bottom:0;">{{item.lesson_cls}}</text>
                           <view class="flex-row">
-                            <text class="teacher-name" style="color:#000;">kisun</text>
-                            <text class="lesson-name" style="color:#888;">{{item.name}}</text>
+                            <text class="teacher-name" style="color:#000;">{{item.teacher.nickName}}</text>
+                            <text class="lesson-name" style="color:#888;">{{item.lesson_name}}</text>
                           </view>
                         </view>
                         <text class="icon-next" style="color:#aaa;"></text>
@@ -210,21 +210,23 @@
           <view class="{{teach_cls_open ? 'weui-cells_show' : ''}}" style="background-color:#fff;">
           <!-- <scroll-view scroll-y="true" class="weui-cells {{teach_cls_open ? 'weui-cells_show' : ''}}"> -->
               <block wx:for="{{teach_cls_list}}" wx:key="index">
-                  <view class="lesson-item"  data-lessondata="{{item}}" data-type="0" bindtap="navigateToLessonIndex">
+                  <view class="lesson-item"  data-lesson_code="{{item.lesson_code}}" data-type="0" bindtap="navigateToLessonIndex">
                   
                   <!--班课类型-->
-                  <view class="lesson-type">计算机</view>
+                  <block wx:for="{{lesson_clses}}" wx:key="{{index}}" wx:for-item="cls">
+                    <view wx:if="{{item.lesson_cls == cls.key}}" class="lesson-type">{{cls.value}}</view>
+                  </block>
                   
                   <!--班课信息-->
                   <view class="flex-row lesson-info">
                     <view class="flex-row lesson-detail">
-                      <image class="lesson-detail-img" src="{{item.head_img}}"></image>
+                      <image class="lesson-detail-img" src="{{item.cls_img}}"></image>
                       <view class="flex-column lesson-detail-inner">
-                        <text style="color:#333;">{{item.name}}</text>
+                        <text style="color:#333;">{{item.lesson_name}}</text>
                         <view class="flex-row">
-                          <text style="color:#888;">2019-2020-1</text>
-                          <text class="lesson-code blue-normal">192415</text>
-                          <text class="icon-qr-code" style="margin-left:20rpx;color:#aaa;"></text>
+                          <text style="color:#888;">{{item.academic_year}}</text>
+                          <text class="lesson-code blue-normal">{{item.lesson_code}}</text>
+                          <text class="icon-qr-code" style="margin-left:20rpx;color:#aaa;" data-images="{{item.qr_code}}" catchtap="image_preview"></text>
                         </view>
                       </view>
                     </view>
@@ -273,7 +275,7 @@
 
   <!--首页添加actionsheet开始-->
 
-  <view class="weui-demo-dialog {{add_sure ? 'weui-demo-dialog_show' : ''}}">
+  <view class='weui-demo-dialog_show fadeIn' wx:if="{{add_sure}}">
       <view class="weui-mask" bindtap="closeAddActionDialog"></view>
       <view class="weui-actionsheet {{add_sure ? 'weui-actionsheet_toggle' : ''}}" catchtap="stopEvent">
           <view class="weui-actionsheet__title">
@@ -298,8 +300,8 @@
 
   <!--底部footer-->
   <view class="weui-footer">
-      <view class="weui-footer__links">
-          <navigator url="" class="weui-footer__link">移动教学助手</navigator>
+      <view class="">
+          <navigator url="" class="">移动教学助手</navigator>
       </view>
       <view class="weui-footer__text">Copyright © 2019-2020 www.kisunning.cn</view>
   </view>
@@ -363,6 +365,16 @@
 
     </block>
   </view>
+
+
+<navigator url="/pages/createarticle/createarticle" hover-class="">
+
+  <view class="fadeIn pub-content" wx:if="{{currentTab == 1}}">
+    <icon class="icon-photo" style="blue-normal"></icon>
+  </view>
+
+</navigator>
+  
 
   <view style="margin-top:200rpx;"></view>
 
@@ -436,6 +448,7 @@
           <text class="my-oper-brief">有效的签到管理</text>
           <text class="icon-in" style="font-size:0.9rem!important;"></text>
         </view>
+
       </view>
       </navigator>
 
@@ -528,7 +541,7 @@
 </view>
 
 <!-- 自定义 tabbar -->
-<view class="nav-tabs">
+<view class="nav-tabs" wx:if="{{!add_sure}}">
   <view class="tab-list {{currentTab == idx ? 'active' : 'default' }}" 
         wx:for="{{items}}" 
         wx:key="prototype" 
@@ -573,5 +586,3 @@
 
   </view>
 </view>
-
-

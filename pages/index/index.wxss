@@ -1,11 +1,20 @@
 /**index.wxss**/
 page{
   background-color: #fafafa!important;
+  font-family: 'alifont',
 }
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.page__hd {
+  padding: 0px;
+}
+
+.page__bd {
+	padding-bottom: 0px
 }
 
 .weui-footer{
@@ -42,6 +51,16 @@ page {
   /* border: 1px solid red; */
   z-index: 100;
 }
+
+.weui-footer__link {
+display: inline-block;
+vertical-align: top;
+margin: 0 8px;
+position: relative;
+font-size: 14px;
+
+}
+
 
 .tab-list {
   display: flex;
@@ -623,4 +642,19 @@ button::after{
   background-color: #ffffff94;
   border-radius: 10rpx;
   box-shadow: 0 0 5rpx #ffffff94;
+}
+
+.pub-content{
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid #0052d9;
+  position: fixed;
+  z-index: 10000;
+  text-align: center;
+  line-height: 100rpx;
+  background-color: rgb(228, 238, 255);
+  border-radius: 50rpx;
+  bottom: 150rpx;
+  right: 20rpx;
+  color: #0052d9;
 }

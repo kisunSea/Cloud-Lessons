@@ -15,7 +15,7 @@ const formatNumber = n => {
 }
 
 // 'https://www.kisunning.cn',
-// 'http://134.175.27.71:8080'
+// 'http://134.175.27.71:8008'
 // 'http://localhost:8000'
 const http_domain = 'http://134.175.27.71:8008'
 
@@ -30,10 +30,18 @@ const http_urls = {
   // 创建班课 - 获取课程分类数据
   subject_classifies: http_domain + '/api/v1/wx_client/lesson/subjects-classifies',
 
-  // 创建班课
+  // 班课/创建/加入
   create_lesson: http_domain + '/api/v1/wx_client/lesson/',
 
-  // `搜索`
+  // 班课首页
+  lesson_index: http_domain + '/api/v1/wx_client/lesson-index/overview/',
+
+  // saying
+  saying: http_domain + '/api/v1/wx_client/saying/',
+
+  // 文件上传下载
+  file_controller: http_domain + '/api/v1/wx_client/file/',
+
 }
 
 function login(res_code, user_info){
@@ -180,10 +188,77 @@ function feature_rate(detect_ret) {
 }
 
 
+// 获取我创建/听的班课
+function fetch_lessons(){
+  wx.request({
+    url: http_urls.create_lesson,
+    method: "GET",
+    data: {
+      token: wx.getStorageSync('jwt_token'),
+    },
+    success: function(response){
+      // console.info('查询的班课信息:\t',response.data)
+      return response.data
+    }
+  })
+}
+
+function image_preview(images){
+  wx.previewImage({
+    current: 0,
+    urls: images,
+  })
+}
+
+
+//上传方法
+function upload_file_server(url, that, upload_picture_list, j) {
+  console.log('上传至\t', url)
+  //上传返回值
+  const upload_task = wx.uploadFile({
+    // 模拟https
+    url: url, //需要用HTTPS，同时在微信公众平台后台添加服务器地址  
+    filePath: upload_picture_list[j]['path'], //上传的文件本地地址    
+    name: upload_picture_list[j]['path'],
+    formData: {
+      'mode': false,
+      'token': wx.getStorageSync('jwt_token'),
+    },
+    //附近数据，这里为路径     
+    success: function (res) {
+
+      var data = JSON.parse(res.data);
+      // //字符串转化为JSON  
+      if (data.Success == true) {
+
+        var filename = data.file //存储地址 显示
+
+        upload_picture_list[j]['path_server'] = filename
+      } else {
+        upload_picture_list[j]['path_server'] = filename
+      }
+      that.setData({
+        upload_picture_list: upload_picture_list
+      });
+
+      wx.setStorageSync('imgs', upload_picture_list);
+    }
+  })
+  //上传 进度方法
+  upload_task.onProgressUpdate((res) => {
+    upload_picture_list[j]['upload_percent'] = res.progress
+    that.setData({
+      upload_picture_list: upload_picture_list
+    });
+  });
+}
 
 module.exports = {
   http_urls: http_urls,
   formatTime: formatTime,
   login: login,
   feature_rate: feature_rate,
+  fetch_lessons: fetch_lessons,
+  image_preview: image_preview,
+  upload_file_server: upload_file_server,
 }
