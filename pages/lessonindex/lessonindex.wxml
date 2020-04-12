@@ -26,7 +26,7 @@
   <view class="lesson-navbar"  style="{{'height: ' + navigationBarHeight + 'px'}};">
     <view style="{{'padding-top: ' + statusBarHeight + 'px'}}"></view>
     <view class='flex-row lesson-nav-title' style="height:{{navigationBarHeight-statusBarHeight}}px;">
-      <text style="margin-left:20rpx;letter-spacing:">{{lesson_data.name}}</text>
+      <text style="margin-left:20rpx;letter-spacing:">{{lesson_data.lesson_name}}</text>
       <text class="icon-home-index" style="font-size:1.5rem;margin-left:40rpx;" bindtap="_ret_home"></text>
     </view>
   </view>
@@ -37,27 +37,27 @@
 
 
   <view class="lesson-index">
-    <view class="lesson-index-top-bg" style="background:url({{lesson_data.head_img}});"></view>
+    <view class="lesson-index-top-bg" style="background:url({{lesson_data.cls_img}});"></view>
     <view class="flex-column lesson-top-cover-view">
       <!--我教得课-->
       <block wx:if="{{type==0}}">
         <view class="flex-row t-lesson-info">
-          <image src="{{lesson_data.head_img}}"></image>
+          <image src="{{lesson_data.cls_img}}"></image>
           <view class="t-lesson-detail">
             <view class="detail-item">
               <text>授课教师</text>
               <text>:</text>
-              <text>kisun</text>
+              <text>{{lesson_data.teacher.nickName}}</text>
             </view>
             <view class="detail-item">
-              <text>班级人数</text>
+              <text>学生人数</text>
               <text>:</text>
-              <text>55人</text>
+              <text>{{stu_num}}人</text>
             </view>
             <view class="detail-item">
               <text>学年-学期</text>
               <text>:</text>
-              <text>2019年-2学期</text>
+              <text>{{lesson_data.academic_year}}年-{{lesson_data.term}}学期</text>
             </view>
           </view>
         </view>
@@ -84,6 +84,20 @@
         </view>
 
       </block>
+
+
+      <block wx:if="{{type == 1}}" wx:for="{{l_oper_list}}" wx:for-item="l_oper" wx:key="index">
+
+        <view class="lesson-oper-item">
+          <view class="flex-column lesson-oper-inner">
+            <text class="{{l_oper.icon_class}}" style="font-size:1.5rem"></text>
+            <text class="oper_name">{{l_oper.oper_name}}</text>
+          </view>
+        </view>
+
+      </block>
+
+      
   </view>
   <!--班课操作结束-->
   

@@ -32,6 +32,9 @@
           <view style="width:300rpx;width: 300rpx;text-align: center;font-size: 1rem;letter-spacing: 5rpx;color: #888;">搜索</view>
         </navigator>
       </view>
+
+      <icon class="icon-photo" style="color:#0052d9;font-size:1.5rem;margin-right:20rpx;"></icon>
+
     </view>
   </view>
 </block>

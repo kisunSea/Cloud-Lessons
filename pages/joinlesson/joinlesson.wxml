@@ -3,7 +3,7 @@
 <!--创建班课-->
 <block wx:if='{{oper_type == 1}}'>
 
-<view class="flex-column c-leson-container">
+<view class="flex-column c-leson-container" animation="{{slide_show}}">
 
   <view class="c-lesson-item">
     <text class="item-title">专业大类</text>
@@ -44,13 +44,131 @@
     </view>
   </view>
 
+  <view class="fadeIn" wx:if="{{errmsg != ''}}">
+      <view class="weui-mask"></view>
+      <view class="weui-dialog">
+          <view class="weui-dialog__bd">{{errmsg}}</view>
+          <view class="weui-dialog__ft">
+              <a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="close">确定</a>
+          </view>
+      </view>
+  </view>
+
   <button class="c-lesson-btn" bindtap="create_lesson">立即创建</button>
 
 </view>
 </block>
 
 <!--手动加入班课-->
-<block wx:else>
+<block wx:elif="{{oper_type==2}}">
+  <!-- <text>手动加入吗</text>   -->
+  <!-- <view class="page" data-weui-theme="{{theme}}"> -->
 
+    <view class="weui-form">
+
+      <view wx:if="{{!join_lesson_info}}">
+
+      <view class="weui-form__text-area">
+        <h2 class="weui-form__title">输入班课码</h2>
+        <view class="weui-form__desc">提示：班课码为七位大写字母<text class="blue-normal">[A-Z]</text>与数字<text class="blue-normal">[0-9]</text>的任意组合，当输入格式不正确时，会出现报红警告</view>
+      </view>
+      <view class="weui-form__control-area">
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active {{isWaring ? 'weui-cell_warn' : ''}}">
+              <view class="weui-cell__hd"><label class="weui-label">班课码</label></view>
+              <view class="weui-cell__bd weui-flex">
+                <input 
+                                  class="weui-input" 
+                                  type="text" 
+                                  placeholder="请输入7位数班课码" 
+                                  placeholder-class="weui-input__placeholder"
+                                  value="{{value}}"
+                                  bindinput="onInput"
+                              />
+                <view wx:if="{{showClearBtn}}" class="weui-btn_reset weui-btn_icon weui-btn_input-clear" bindtap="onClear">
+                  <i class="weui-icon-clear"></i>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active weui-cell_disabled">
+              <view class="weui-cell__hd">							
+                              <label class="weui-label">微信号</label>
+                          </view>
+              <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="" value="WeUI" disabled />
+              </view>
+            </view>
+          </view>
+        </view> -->
+      </view>
+
+      </view>
+
+      <!--班课查询结果-->
+      <view wx:if="{{join_lesson_info}}" class="lesson-preview flex-row fadeIn">
+          <image src="{{join_lesson_info.cls_img}}"></image>
+          <view class="lesson-info-line flex-column">
+            
+
+            <!--班课类型-->
+            <block wx:for="{{lesson_clses}}" wx:key="{{index}}" wx:for-item="cls">
+              <view wx:if="{{join_lesson_info.lesson_cls == cls.key}}" class="line-info-item">
+                <text class="line-item-title">类别：</text>
+                <text class="line-item-desc">{{cls.value}}</text>
+              </view>
+            </block>
+
+            <view class="line-info-item">
+              <text class="line-item-title">班课名：</text>
+              <text class="line-item-desc">{{join_lesson_info.lesson_name}}</text>
+            </view>
+
+            <view class="line-info-item">
+              <text class="line-item-title">是否结课：</text>
+              <text class="line-item-desc">{{join_lesson_info.finish_time == null ? '进行中' : '已结束'}}</text>
+            </view>
+
+            <view class="line-info-item">
+              <text class="line-item-title">授课老师：</text>
+              <text class="line-item-desc">{{join_lesson_info.teacher.nickName}}</text>
+            </view>
+
+            <view class="line-info-item">
+              <text class="line-item-title">班课码：</text>
+              <text class="line-item-desc">{{join_lesson_info.lesson_code}}</text>
+            </view>
+
+            <view class="line-info-item">
+              <text class="line-item-title">班课简介：</text>
+              <text class="line-item-desc">{{join_lesson_info.desc}}</text>
+            </view>
+
+            <view class="line-info-item">
+              <text class="line-item-title">创建时间：</text>
+              <text class="line-item-desc">{{join_lesson_info.create_time}}</text>
+            </view>
+
+          </view>
+      </view>
+
+
+      <view class="weui-form__opr-area">
+        <a class="weui-btn weui-btn_primary" bindtap="{{join_lesson_info == null ? 'onConfirm' : 'confirm_join_lesson'}}">{{join_lesson_info == null ? '查询班课' : '确认加入'}}</a>
+        <a wx:if="{{join_lesson_info && research}}" class="weui-btn weui-btn_primary research-btn" bindtap="research">重新搜索</a>
+      </view>
+    </view>
+  <!-- </view> -->
+</block>
+
+
+<block wx:else>
+  黑客你好!饶了我吧...
 </block>
 

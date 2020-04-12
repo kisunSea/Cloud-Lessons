@@ -8,7 +8,7 @@
   line-height: 44px;
   margin-left: 5px;
   letter-spacing: 2px;
-  color: #0052d9;
+  color: #222;
 }
 
 .search-widget{

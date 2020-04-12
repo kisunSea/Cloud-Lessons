@@ -9,5 +9,6 @@
     "blog": "/pages/localcomponents/blogs/blogs",
     "my": "/pages/localcomponents/my/my"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
 }

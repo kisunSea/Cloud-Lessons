@@ -1,0 +1,31 @@
+<!--pages/successtip/successtip.wxml-->
+<block wx:if="{{type=='create_lesson'}}">
+  <view class='flex-column'>
+    <view class='top-succ-tip flex-column'>
+      <icon class='success-gly-large'></icon>
+      <view class='flex-row'>
+        班课码：
+        <!-- <text class='ran-code'>4567892</text> -->
+        <text class='ran-code'>{{data.lesson_code}}</text>
+        <icon class='copy-gly' bindtap='copyCode'></icon>
+        <!-- <text wx:if="{{copy_trigger}}" class='copy-tip' animation='{{animationData}}' bindtap='copyAnimation'>复制成功</text> -->
+      </view>
+    </view>
+    
+    <!-- <image src='{{qrcodepath}}'></image> -->
+    <view class='flex-row center-qr'>
+      <!-- <image class='qrcode-img' src='../../static/images/1.png'></image> -->
+      <image class='qrcode-img' src='{{data.qr_code}}' bindtouchstart='timestart' bindtouchend='timeend' bindtap='saveImg'></image>
+      <view class='flex-column' style=''>
+        <view class='flex-column'>
+          <icon class='warning-gly red-normal'></icon>
+          <text class='qr-save-tip'>长按二维码保存</text>
+        </view>
+        <view class='into-class' bindtap='intoClass'>进入班级</view>
+      </view>
+    </view>
+
+    <!--回到首页按钮-->
+    <view class='back-to-index-btn' bindtap='backIndex'>回到首页</view>
+  </view>
+</block>
